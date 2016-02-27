@@ -6,7 +6,7 @@
 * Make your own branch
 
 ## Resources
-* Font- Open Sans: https://www.google.com/fonts#ReviewPlace:refine/Collection:Open+Sans
+* Font- Open Sans: https://www.google.com/fonts#UsePlace:use/Collection:Open+Sans
 * Ion icons: http://ionicons.com/
 
 ## Team Members
