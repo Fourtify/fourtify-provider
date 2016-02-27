@@ -1,0 +1,145 @@
+#title-breadcrumb-option-demo.page-title-breadcrumb
+    .page-header.pull-left
+        .page-title Staff Management Module
+    .clearfix
+
+// BEGIN CONTENT
+.page-content
+    .row
+        .col-xs-12.col-sm-12.col-md-12.col-lg-3.pull-left           
+            //- Groups
+            .portlet.box.portlet-grey
+                .portlet-header
+                    .caption
+                        | Groups&nbsp;
+                        span.badge.badge-default {{ groups.length + 1 }}
+                    .actions
+                        .btn-group
+                            button.btn.btn-default.btn-sm(title="Create Group", href="#", ng-click="createGroup()")
+                                i.fa.fa-plus
+                .portlet-body(style="padding: 15px 0px 15px 0px")
+                    .container-fluid
+                        ul.group.nav.nav-pills.nav-stacked
+                            li(role="presentation", ng-class="{ 'active': selectedGroup._title === 'All' }")
+                                a(href="#", ng-click="selectGroup({ 'special': true, '_title': 'All' })")
+                                    | All&nbsp;
+                            li.dropdown(role="presentation", ng-repeat='g in groups', ng-class="{ 'active': selectedGroup._title === g._title }")
+                                a.dropdown-toggle(href="#", data-toggle="dropdown", role="button", aria-haspopup="true", aria-expanded="false")
+                                    | {{ g._title }}&nbsp;
+                                    //i.fa.fa-caret-down.pull-right
+                                    span.badge.badge-success.pull-right {{ g._staff.length || 0 }}
+                                ul.dropdown-menu.pull-right
+                                    li
+                                        a(href="#", ng-click="selectGroup(g)") Select Group
+                                    li
+                                        a(href="#", ng-click="updateGroup(g)") Update Group
+                                    li(ng-if="g._title!='Admin'")
+                                        a(href="#", ng-click="deleteGroup(g)") Delete Group
+
+        .col-xs-12.col-sm-12.col-md-12.col-lg-9
+            .portlet.box.portlet-purple
+                .portlet-header
+                    .caption 
+                        | Staff > {{ selectedGroup._title }}
+                    .actions
+                        .btn-group(style="margin-left:10px;")
+                            button.btn.btn-default.btn-sm(title="Create", href="javascript:void(0)", ng-click="createStaff()")
+                                i.fa.fa-plus
+                                | &nbspCreate Staff
+                .portlet-body.pan
+                    .alert.alert-dismissable.alert-danger.register-fail(ng-if="err", ng-cloak)
+                        button.close(data-dismiss='alert', type='button') &times;
+                        p.
+                            {{err._code}}: {{err._msg}}
+                    .alert.alert-dismissable.alert-success(ng-if="success", ng-cloak)
+                        button.close(data-dismiss='alert', type='button') &times;
+                        p.
+                            {{success._msg}}
+                    .alert.alert-dismissable.alert-info(ng-if="pending", ng-cloak)
+                        button.close(data-dismiss='alert', type='button') &times;
+                        p.
+                            {{pending._msg}}
+                    .portlet-body
+                        .form-search-filter
+                            .input-icon
+                                i.fa.fa-search
+                                input.form-control(type='text', placeholder='Search staff in...', ng-model='search', ng-change="searchStaff(search);")
+                        p
+                            .btn-group.btn-group-sm
+                                button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown')
+                                    | Sort by&nbsp
+                                    span.caret
+                                ul.dropdown-menu.sort-by(ng-model='orderProp')
+                                    li
+                                        a.sort(href="#", ng-click="selectSort('name', 1);" ) Name (ascending)
+                                    li
+                                        a.sort(href="#", ng-click="selectSort('name', -1);") Name (descending)
+                                    li
+                                        a.sort(href="#", ng-click="selectSort('email', 1);") E Mail (ascending)
+                                    li
+                                        a.sort(href="#", ng-click="selectSort('email', -1);") E Mail (descending)
+                            a#refreshList.btn.btn-white.btn-sm(ng-click="resetFilters()")
+                                | Reset&nbsp
+                                i.fa.fa-refresh
+                            .btn-group.pull-right
+                                button.btn.btn-default.btn-sm.dropdown-toggle(type='button', data-toggle='dropdown')
+                                    i.fa.fa-list
+                                    | &nbspItems per page&nbsp
+                                    span.caret
+                                ul.dropdown-menu.pull-right
+                                    li
+                                        a(href="javascript:void(0)", ng-click="setPerPage(10)")
+                                            | 10
+                                    li
+                                        a(href="javascript:void(0)", ng-click="setPerPage(20)")
+                                            | 20
+                                    li
+                                        a(href="javascript:void(0)", ng-click="setPerPage(50)")
+                                            | 50
+                                    li
+                                        a(href="javascript:void(0)", ng-click="setPerPage(100)")
+                                            | 100
+                                    li
+                                        a(href="javascript:void(0)", ng-click="setPerPage(-1)")
+                                            | All
+                    .container.col-md-12
+                        .table-responsive
+                            table.table.table-striped.table-hover.thumb-small.neat-table
+                                thead
+                                    tr.condensed
+                                        //-th(scope='col')
+                                            | Image
+                                            span.column-sorter
+                                        th(scope='col')
+                                            | Name
+                                            span.column-sorter
+                                        th(scope='col')
+                                            | Phone
+                                            span.column-sorter
+                                        th(scope='col')
+                                            | E Mail
+                                            span.column-sorter
+                                        th(scope='col')
+                                            | Action(s)
+                                            span.column-sorter
+                                tbody.media-thumb
+                                    tr(ng-repeat="s in staff")
+                                        //-td
+                                            img.img-thumbnail(src="{{ s.profileImage }}")
+                                        td
+                                            div {{s._name._first}} {{s._name._last}}
+                                        td
+                                            div {{s._phone[0]._number}}
+                                        td
+                                            div {{s._email._value}}
+                                        td
+                                            .btn-group
+                                                a.btn.btn-sm.btn-blue(href="javascript:void(0)", title="Update", ng-click="updateStaff(s)")
+                                                    i.fa.fa-edit
+                                                a.btn.btn-sm.btn-red(href="javascript:void(0)", title="Delete", ng-click="deleteStaff(s)")
+                                                    i.fa.fa-times
+                    .text-center
+                        uib-pagination.pagination-md.top-zero(total-items='staffCount', ng-model='page', max-size='null',
+                        boundary-links='true', rotate='false', items-per-page="perPage", ng-change="changePage(page)")
+
+//- END CONTENT

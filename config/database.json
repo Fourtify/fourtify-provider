@@ -1,0 +1,29 @@
+{
+    "production": {
+        "host": "ds037824.mlab.com",
+        "db": "fourtify-provider-prod",
+        "port": "37824",
+        "credentials": {
+            "user": "fourtify-provider-prod",
+            "pass": "fourtify-provider-prod333"
+        }
+    },
+    "development": {
+        "host": "ds045684.mlab.com",
+        "db": "fourtify-provider-dev",
+        "port": "45684",
+        "credentials": {
+            "user": "fourtify-provider-dev",
+            "pass": "fourtify-provider-dev333"
+        }
+    },
+    "test": {
+        "host": "ds045684.mlab.com",
+        "db": "fourtify-provider-test",
+        "port": "45684",
+        "credentials": {
+            "user": "fourtify-provider-test",
+            "pass": "fourtify-provider-test333"
+        }
+    }
+}

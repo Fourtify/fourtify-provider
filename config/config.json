@@ -1,0 +1,11 @@
+{
+    "production": {
+        "apiUrl": "http://api.fourtify.us"
+    },
+    "development": {
+        "apiUrl": "http://localhost:3001"
+    },
+    "test": {
+        "apiUrl": "http://test.api.fourtify.us"
+    }
+}

@@ -1,0 +1,49 @@
+{
+  "name": "fourtify-provider",
+  "version": "0.0.1",
+  "homepage": "http://fourtify.us",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "async": "~1.4.2",
+    "body-parser": "~1.14.1",
+    "connect-flash": "^0.1.1",
+    "connect-mongo": "~0.8.2",
+    "cookie-parser": "~1.4.0",
+    "cron": "^1.0.9",
+    "debug": "~2.2.0",
+    "dotenv": "~1.2.0",
+    "express": "~4.13.3",
+    "express-session": "~1.11.3",
+    "jade": "~1.11.0",
+    "md5": "~2.0.0",
+    "marked" : "~0.3.5",
+    "moment": "~2.10.6",
+    "moment-timezone": "~0.4.0",
+    "mongoose": "~4.1.9",
+    "mongoose-relationship": "0.1.4",
+    "morgan": "~1.6.1",
+    "nice-json2csv": "^0.2.0",
+    "nodemailer": "~1.5.0",
+    "node-oauth2-server": "~2.4.0 ",
+    "numeral": "~1.5.3",
+    "replace": "~0.3.0",
+    "request": "~2.65.0",
+    "serve-favicon": "~2.3.0",
+    "underscore": "~1.8.3"
+  },
+  "devDependencies": {
+    "gulp": "~3.9.0",
+    "gulp-jshint": "~2.0.0",
+    "gulp-sass": "~2.1.1",
+    "gulp-concat": "~2.6.0",
+    "gulp-uglify": "~1.5.1",
+    "gulp-rename": "~1.2.2",
+    "gulp-minify-css": "~1.2.2",
+    "gulp-cssmin": "~0.1.7",
+    "gulp-imagemin": "~2.4.0",
+    "imagemin-pngquant": "~4.2.0"
+  }
+}

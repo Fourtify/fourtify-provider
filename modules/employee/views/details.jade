@@ -1,0 +1,204 @@
+//extends app_layout
+//block content
+#title-breadcrumb-option-demo.page-title-breadcrumb
+    .page-header.pull-left
+        .page-title Customer Details
+    ol.breadcrumb.page-breadcrumb.pull-left
+        li
+            i.fa.fa-files-o
+            a(href, ui-sref="staff-all") &nbspCustomers&nbsp
+            i.fa.fa-angle-right
+        li.active &nbspCustomer Details
+    .clearfix
+    //
+      END TITLE & BREADCRUMB PAGE
+//
+  BEGIN CONTENT
+.page-content.col-md-12
+    .col-md-12
+        .alert.alert-danger.register-fail(ng-show="err.show")
+            p.
+                {{err.msg}}
+        .alert.alert-success(ng-show="success.show")
+            p.
+                {{success.msg}}
+    .row
+        .col-md-3
+            .container.col-md-10.col-md-offset-1
+                h4
+                    strong Customer Details
+                p
+                    | Customer details
+        .col-md-9
+            .panel.panel-default
+                .panel-body
+                    .col-md-12
+                        a.btn.btn-green.pull-right(href, ui-sref="staff-update({staffId: staff._id})")
+                            i.fa.fa-edit
+                            | &nbspEdit
+                    .col-md-12
+                        strong Name:
+                        p {{name.firstName}} {{name.lastName}}
+                        p {{address.street}}
+                        p {{address.city}}, {{address.state}} {{address.zip}}
+                        p {{phone}}
+                        strong Company Name:
+                        p {{company}}
+                        strong E Mail:
+                        p {{email}}
+
+
+    hr
+    .row
+        .col-md-3
+            .container.col-md-10.col-md-offset-1
+                h4
+                    strong Invoices
+                p
+                    | History of Invoices
+        .col-md-9
+            .panel.panel-default
+                .panel-body
+                    .col-md-12
+                        a.btn.btn-green.pull-right(title="Create", href, ui-sref="staff-invoices-create({staffId: staff._id})")
+                            i.fa.fa-plus
+                            | &nbspCreate Invoice
+                    div &nbsp
+                    .table-container
+                        .row.mbl
+                            .col-lg-12
+                                .input-group
+                                    input.form-control(type='text', placeholder='Filter Invoices...', ng-model="invoicesQuery")
+                                    span.input-group-btn
+                                        button.btn.btn-success.dropdown-toggle(type='button', data-toggle='dropdown') Search
+                        .image-select-table
+                            .table-responsive
+                                table.table.table-hover.table-striped.table-bordered.table-advanced.tablesorter.neat-table
+                                    thead
+                                        tr.condensed
+                                            th
+                                                .icheckbox_minimal-grey(style='position: relative;')
+                                                    input.checkall(type='checkbox', style='position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);')
+                                                    ins.iCheck-helper(style='position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);')
+                                            th To
+                                            th Amount
+                                            th Due
+                                            th Status
+                                            th Actions
+                                    tbody.media-thumb
+                                        tr(ng-repeat="invoice in invoices | filter:invoicesQuery")
+                                            td
+                                                .icheckbox_minimal-grey(style='position: relative;')
+                                                    input.checkall(type='checkbox', style='position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);')
+                                                    ins.iCheck-helper(style='position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);')
+                                            td {{invoice.to.person}}
+                                            td {{invoice.total | currency:"$":2}}
+                                            td {{invoice.due | date:'yyyy-MM-dd'}}
+                                            td {{invoice.status}}
+                                            td
+                                                a.btn.btn-sm.btn-green(title="Generate Excel", href="javascript:void(0)", ng-click="generatePDF(invoice)")
+                                                    i.fa.fa-file-excel-o
+                                                | &nbsp
+                                                a.btn.btn-sm.btn-blue(title="Edit", href, ui-sref="staff-invoices-update({invoiceId: invoice._id})")
+                                                    i.fa.fa-edit
+                                                | &nbsp
+                                                a.btn.btn-sm.btn-red(href="javascript:void(0)", title="Delete", ng-click="deleteConfirm(invoice)")
+                                                    i.fa.fa-times
+    hr
+    .row
+        .col-md-3
+            .container.col-md-10.col-md-offset-1
+                h4
+                    strong Reminders
+                p
+                    | Manage reminders here
+        .col-md-9
+            .panel.panel-default
+                .panel-body
+                    .col-md-12
+                        a.btn.btn-green.pull-right(title="Create", href, ui-sref="staff-reminders-create({staffId: staff._id})")
+                            i.fa.fa-plus
+                            | &nbspCreate Reminder
+                    div &nbsp
+                    .table-container
+                        .row.mbl
+                            .col-lg-12
+                                .input-group
+                                    input.form-control(type='text', placeholder='Filter Reminders...', ng-model="remindersQuery")
+                                    span.input-group-btn
+                                        button.btn.btn-success.dropdown-toggle(type='button', data-toggle='dropdown') Search
+                        .image-select-table
+                            .table-responsive
+                                table.table.table-hover.table-striped.table-bordered.table-advanced.tablesorter.neat-table
+                                    thead
+                                        tr.condensed
+                                            th
+                                                .icheckbox_minimal-grey(style='position: relative;')
+                                                    input.checkall(type='checkbox', style='position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);')
+                                                    ins.iCheck-helper(style='position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);')
+                                            th Remind At
+                                            th Reason
+                                            th Status
+                                            th Actions
+                                    tbody.media-thumb
+                                        tr(ng-repeat="reminder in reminders | filter:remindersQuery")
+                                            td
+                                                .icheckbox_minimal-grey(style='position: relative;')
+                                                    input.checkall(type='checkbox', style='position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);')
+                                                    ins.iCheck-helper(style='position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);')
+                                            td {{reminder.remindAt | date:'yyyy-MM-dd'}}
+                                            td {{reminder.reason}}
+                                            td {{reminder.status}}
+                                            td
+                                                a.btn.btn-sm.btn-blue(title="Edit", href, ui-sref="staff-reminders-update({reminderId: reminder._id})")
+                                                    i.fa.fa-edit
+                                                | &nbsp
+                                                a.btn.btn-sm.btn-red(href="javascript:void(0)", title="Delete", ng-click="deleteConfirmReminder(reminder)")
+                                                    i.fa.fa-times
+    //-hr
+    //-.row
+        .col-md-3
+            .container.col-md-10.col-md-offset-1
+                h4
+                    strong Groups
+                p
+                    | Control what groups the user will belong to!
+        .col-md-9
+            .panel.panel-default
+                .panel-body
+                    .table-container
+                        .row.mbl
+                            .col-lg-12
+                                .input-group
+                                    input.form-control(type='text', placeholder='Filter Groups...', ng-model="groupsQuery")
+                                    span.input-group-btn
+                                        button.btn.btn-success.dropdown-toggle(type='button', data-toggle='dropdown') Search
+                        .image-select-table
+                            .table-responsive
+                                table.table.table-hover.table-striped.table-bordered.table-advanced.tablesorter.neat-table
+                                    thead
+                                        tr.condensed
+                                            th
+                                                .icheckbox_minimal-grey(style='position: relative;')
+                                                    input.checkall(type='checkbox', style='position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);')
+                                                    ins.iCheck-helper(style='position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);')
+                                            th Title
+                                            th Access Level
+                                    tbody.media-thumb
+                                        tr(ng-repeat="grp in groups | filter:groupsQuery")
+                                            td
+                                                .icheckbox_minimal-grey(ng-class="{checked:selectedGroups.indexOf(grp._id) != -1}", ng-click="selectGroups(grp._id)", style='position: relative;')
+                                                    ins.iCheck-helper(style='position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);')
+                                            td {{grp.title}}
+                                            td {{grp.accessLevel}}
+    hr
+    .row
+        .col-md-3
+            .container.col-md-10.col-md-offset-1
+                button.btn.btn-yellow(type='submit', ui-sref="staff-all")
+                    i.fa.fa-undo
+                    | &nbspCancel
+    hr
+    hr
+//
+  END CONTENT

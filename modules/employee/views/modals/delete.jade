@@ -1,0 +1,7 @@
+.modal-header
+    h3.modal-title Are you sure you want to delete:
+.modal-body
+    h4 {{ deleteStaff._name._first }} {{ deleteStaff._name._last }} - {{ deleteStaff._email._value }}
+.modal-footer
+    button.btn.btn-red(ng-click='delete()') Delete
+    button.btn.btn-blue(ng-click='cancel()') Cancel
