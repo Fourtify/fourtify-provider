@@ -5,6 +5,10 @@
 * This is the Google Drive of the designs: https://drive.google.com/open?id=0B8EQqP8JqXojYThXYm9HcGdtSHM
 * Make your own branch
 
+## Resources
+* Font- Open Sans: https://www.google.com/fonts#ReviewPlace:refine/Collection:Open+Sans
+* Ion icons: http://ionicons.com/
+
 ## Team Members
 * Winnie Xu
 * Jessica Cui
