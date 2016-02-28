@@ -65,6 +65,7 @@ app.use(session({
     saveUninitialized: true
 }));
 
+
 var AuthMiddleware = require("./modules/authentication/src/AuthMiddleware");
 
 
