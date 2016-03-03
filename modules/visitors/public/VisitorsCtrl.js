@@ -7,6 +7,24 @@ angular.module("visitors", [])
         function ($scope, VisitorsService, $uibModal) {
 
 
+        $scope.queue = [];
+
+        $scope.submitCreate = function(){
+            $scope.queue.push({
+                name: $scope.name,
+                provider: $scope.provider,
+                reason: $scope.reason,
+                date: $scope.date,
+                time: $scope.time
+            });
+            $scope.name="";
+            $scope.provider="";
+            $scope.reason="";
+            $scope.date="";
+            $scope.time="";
+            jQuery('#myModal').modal('hide');
+        };
+
     }])
 
     .service('VisitorsService', [

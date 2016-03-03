@@ -19,21 +19,21 @@
                         h4.modal-title CREATE A NEW APPOINTMENT
                     .modal-body
                         h4 FULL NAME
-                        input.inputBox.newApptInput(type='text')
-                        h4 HOST
-                        input.inputBox.newApptInput(type='text')
+                        input.inputBox.newApptInput(type='text', ng-model="name")
+                        h4 PROVIDER
+                        input.inputBox.newApptInput(type='text', ng-model="provider")
                         h4 REASON FOR VISIT
-                        input.inputBox.newApptInput(type='text')
+                        input.inputBox.newApptInput(type='text', ng-model="reason")
                         .row
                             .col-md-6
                                 h4 DATE
-                                input.inputBox.newApptDate(type='text')
+                                input.inputBox.newApptDate(type='text', ng-model="date")
                             .col-md-6
                                 h4 TIME
-                                input.inputBox.newApptTime(type='text')
+                                input.inputBox.newApptTime(type='text', ng-model="time")
                     .modal-footer
                         button.btn.btn-default(type='button', data-dismiss='modal') Cancel
-                        button.btn.btn-primary(type='submit', data-dismiss='modal') Submit
+                        button.btn.btn-primary(type='submit', ng-click="submitCreate()") Submit
         .row
             .col-lg-12
                 // /.panel-heading
@@ -43,27 +43,27 @@
                             thead
                                 tr
                                     th NAME
-                                    th CHECK IN
-                                    th APPOINTMENT
-                                    th HOST
+                                    th PROVIDER
                                     th REASON FOR VISIT
+                                    th DATE
+                                    th TIME
                                     th ACTION
                             tbody
-                                tr.odd.gradeX
-                                    td John Doe
-                                    td 1:30PM
-                                    td 1:30PM
-                                    td.center Dr. Peter Parker
-                                    td.center Routine Check-up
-                                    td.center Check Out
-                                tr.even.gradeC
+                                tr.odd.gradeX(ng-repeat="q in queue")
+                                    td {{q.name}}
+                                    td {{q.provider}}
+                                    td {{q.reason}}
+                                    td {{q.date}}
+                                    td {{q.time}}
+
+                                //-tr.even.gradeC
                                     td Gwyneth Paltrow
                                     td 10:30AM
                                     td 10:00AM
                                     td.center Dr. Chris Hemsworth
                                     td.center Root Canal
                                     td.center Check Out
-                                tr.odd.gradeA
+                                //-tr.odd.gradeA
                                     td Nina Groot
                                     td 9:30AM
                                     td 9:45AM
@@ -71,8 +71,8 @@
                                     td.center Plastic Surgery
                                     td.center 10:04AM
     script.
-        $(document).ready(function () {
+        /*$(document).ready(function () {
             $('#dataTables-example').DataTable({
                 responsive: true
             });
-        });
+        });*/
