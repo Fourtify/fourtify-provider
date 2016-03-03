@@ -2,7 +2,13 @@
     .row
         .col-lg-12
             h1.page-header VISITORS QUEUE
-        button#newAppt.btn.btn-info(type='button', data-toggle='modal', data-target='#myModal') CREATE A NEW APPOINTMENT
+            html
+                body
+                    .row
+                        input.apptSearch.form-control.ng-isolate-scope(st-search='', placeholder='Search Visitors', type='text')
+                        button#newAppt.btn.btn-info(type='button', data-toggle='modal', data-target='#myModal') CREATE A NEW APPOINTMENT
+
+
         // Modal
         #myModal.modal.fade(role='dialog')
             .modal-dialog(ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg'}")
@@ -18,20 +24,22 @@
                         input.inputBox.newApptInput(type='text')
                         h4 REASON FOR VISIT
                         input.inputBox.newApptInput(type='text')
-                        h4 DATE
-                        input.inputBox.newApptInput(type='text')
-                        .container
-                        h4 TIME
-                        input.inputBox.newApptInput(type='text')
+                        .row
+                            .col-md-6
+                                h4 DATE
+                                input.inputBox.newApptDate(type='text')
+                            .col-md-6
+                                h4 TIME
+                                input.inputBox.newApptTime(type='text')
                     .modal-footer
                         button.btn.btn-default(type='button', data-dismiss='modal') Cancel
-                        button.btn.btn-primary(type='submit', data-ng-disabled='modalForm.$invalid', disables='disabled') Submit
+                        button.btn.btn-primary(type='submit', data-dismiss='modal') Submit
         .row
             .col-lg-12
                 // /.panel-heading
                 .panel-body
                     .dataTable_wrapper
-                        table#dataTables-example.table.table-bordered.table-hover
+                        table#dataTables-example.table.table-hover
                             thead
                                 tr
                                     th NAME
@@ -42,30 +50,29 @@
                                     th ACTION
                             tbody
                                 tr.odd.gradeX
-                                    td Trident
-                                    td Internet Explorer 4.0
-                                    td Win 95+
-                                    td.center 4
-                                    td.center X
-                                    td.center X
+                                    td John Doe
+                                    td 1:30PM
+                                    td 1:30PM
+                                    td.center Dr. Peter Parker
+                                    td.center Routine Check-up
+                                    td.center Check Out
                                 tr.even.gradeC
-                                    td Trident
-                                    td Internet Explorer 5.0
-                                    td Win 95+
-                                    td.center 5
-                                    td.center C
-                                    td.center X
+                                    td Gwyneth Paltrow
+                                    td 10:30AM
+                                    td 10:00AM
+                                    td.center Dr. Chris Hemsworth
+                                    td.center Root Canal
+                                    td.center Check Out
                                 tr.odd.gradeA
-                                    td Trident
-                                    td Internet Explorer 5.5
-                                    td Win 95+
-                                    td.center 5.5
-                                    td.center A
-                                    td.center X
+                                    td Nina Groot
+                                    td 9:30AM
+                                    td 9:45AM
+                                    td.center Dr. Ryan Gosling
+                                    td.center Plastic Surgery
+                                    td.center 10:04AM
     script.
         $(document).ready(function () {
             $('#dataTables-example').DataTable({
                 responsive: true
             });
         });
-
