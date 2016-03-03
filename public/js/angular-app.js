@@ -1,5 +1,5 @@
 // public/js/angular-app.js
-angular.module("angulerApp",
+angular.module("fourtifyApp",
     [
         "ui.router",
         "oc.lazyLoad",
@@ -29,22 +29,22 @@ angular.module("angulerApp",
                     $state.go('dashboard');
                 }
             })
-            .state('dashboard', {
+            /*.state('dashboard', {
                 url: "/dashboard",
                 templateUrl: "/templates/dashboard"
-            })
+            })*/
 
-            // Staff
-            .state('staff', {
-                url: "/staff",
-                templateUrl: "/templates/staff",
-                controller: "StaffAllCtrl",
+            // Employee
+            .state('employee', {
+                url: "/employee",
+                templateUrl: "/templates/employee",
+                controller: "EmployeeAllCtrl",
                 resolve: {
                     staff: function ($ocLazyLoad) {
                         return $ocLazyLoad.load(
                             {
                                 name: "staff",
-                                files: ["/pub/staff/StaffCtrl.js"]
+                                files: ["/pub/employee/EmployeeCtrl.js"]
                             }
                         );
                     }

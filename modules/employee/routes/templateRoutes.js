@@ -62,7 +62,7 @@ router.get('/groups/delete', AuthMiddleware.authenticateApi(), function(req, res
 // =========================================================================
 // Main Employee Page (default)  - GET ============================================================
 // =========================================================================
-router.get('/', AuthMiddleware.authenticateApi(), function(req, res) {
+router.get('/', /*AuthMiddleware.authenticateApi(),*/ function(req, res) {
     res.render('index');
 });
 

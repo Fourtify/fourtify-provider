@@ -72,8 +72,8 @@ var AuthMiddleware = require("./modules/authentication/src/AuthMiddleware");
 var authenticationModule = require('./modules/authentication/app');
 app.use(authenticationModule);
 
-//var employeeModule = require('./modules/employee/app');
-//app.use(employeeModule);
+var employeeModule = require('./modules/employee/app');
+app.use(employeeModule);
 
 app.all("/api/myself", AuthMiddleware.authenticateApi(), function(req, res){
     res.status(200).send({
