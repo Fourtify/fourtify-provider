@@ -75,6 +75,9 @@ app.use(authenticationModule);
 var employeeModule = require('./modules/employee/app');
 app.use(employeeModule);
 
+var visitorsModule = require('./modules/visitors/app');
+app.use(visitorsModule);
+
 app.all("/api/myself", AuthMiddleware.authenticateApi(), function(req, res){
     res.status(200).send({
         provider: req.session.provider,

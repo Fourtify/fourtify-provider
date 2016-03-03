@@ -51,7 +51,22 @@ angular.module("fourtifyApp",
                 }
             })
 
-
+            // Visitors Queue
+            .state('visitors', {
+                url: "/visitors",
+                templateUrl: "/templates/visitors",
+                controller: "VisitorsAllCtrl",
+                resolve: {
+                    staff: function ($ocLazyLoad) {
+                        return $ocLazyLoad.load(
+                            {
+                                name: "queue",
+                                files: ["/pub/visitors/VisitorsCtrl.js"]
+                            }
+                        );
+                    }
+                }
+            })
 
         $locationProvider.html5Mode(true);
 
