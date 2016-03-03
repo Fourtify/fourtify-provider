@@ -60,7 +60,7 @@ angular.module("fourtifyApp",
                     staff: function ($ocLazyLoad) {
                         return $ocLazyLoad.load(
                             {
-                                name: "queue",
+                                name: "visitors",
                                 files: ["/pub/visitors/VisitorsCtrl.js"]
                             }
                         );
