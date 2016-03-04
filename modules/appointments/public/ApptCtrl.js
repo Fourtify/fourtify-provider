@@ -1,9 +1,9 @@
-angular.module("visitors", [])
+angular.module("appointments", [])
 
     // =========================================================================
     // Visitors Controllers ============================================================
     // =========================================================================
-    .controller("VisitorsAllCtrl",[ "$scope", "VisitorsService", "$uibModal",
+    .controller("ApptAllCtrl",[ "$scope", "VisitorsService", "$uibModal",
         function ($scope, VisitorsService, $uibModal) {
 
 
