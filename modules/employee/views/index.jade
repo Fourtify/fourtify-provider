@@ -13,87 +13,77 @@
                         li
                             a(href='#') Directory
                         li
-                            a(href='#') Import Manually
-                        li
                             a(href='#') Import CSV
-            .col-lg-12
+                                    //Modal Controller
+            .col-lg-12(ng-controller='EmployeeAllCtrl')
+                button#newAppt.btn.btn-info(style="margin-top:10px",type='button', data-toggle='modal', data-target='#myModal') ADD NEW EMPLOYEE
+                // Modal
+                #myModal.modal.fade(role='dialog')
+                    .modal-dialog(ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg'}")
+                        // Modal content
+                        .modal-content
+                            .modal-header
+                                button.close(type='button', data-dismiss='modal') ×
+                                h4.modal-title ADD NEW EMPLOYEE
+                            .modal-body
+                                .form-group.employeeName
+                                    label Full Name
+                                    input#name.form-control(type='text', ng-model='current.name', value='{{current.name}}')
+                                .form-group.employeeTitle
+                                    label Title
+                                    select.form-control
+                                        option Mr.
+                                        option Ms.
+                                        option Mrs.
+                                        option Dr.
+                                .form-group
+                                    label Email
+                                    input.form-control
+                                .form-group
+                                    label Phone Number
+                                    input.form-control
+                            .modal-footer
+                                button.btn.btn-default(type='button', data-dismiss='modal') Cancel
+                                button.btn.btn-primary(ng-click='addNew(current)', type='submit', data-dismiss='modal') Add
                 .col-lg-3.employeeList
-                    ul
-                        h4 A
-                        li EmployeeA
-                        li EmployeeA
-                        li EmployeeA
-                        li EmployeeA
-                        li EmployeeA
-                        li EmployeeA
-                        li EmployeeA
-                        li EmployeeA
-                        h4 B
-                        li EmployeeB
-                        li EmployeeB
-                        li EmployeeB
-                        li EmployeeB
-                        li EmployeeB
-                        li EmployeeB
-                        li EmployeeB
-                        li EmployeeB
-                        li EmployeeB
-                        h4 F
-                        li EmployeeF
-                        li EmployeeF
-                        li EmployeeF
-                        h4 R
-                        li EmployeeR
-                        li EmployeeR
-                        li EmployeeR
-                        h4 S
-                        li EmployeeS
-                        li EmployeeS
-                        li EmployeeS
-                        li EmployeeS
-                        h4 T
-                        li EmployeeT
-                        li EmployeeT
-                        li EmployeeT
-                        li EmployeeT
-                        h4 V
-                        li EmployeeV
-                        li EmployeeV
-                        li EmployeeV
-                        li EmployeeV
-                        h4 Y
-                        li EmployeeY
-                        li EmployeeY
-                        li EmployeeY
-                        h4 Z
-                        li EmployeeZ
-                        li EmployeeZ
-                        li EmployeeZ
+                    table.table.table-striped
+                        thead
+                            tr
+                                th Name
+                        tbody
+                            tr(ng-repeat='user in users')
+                                td
+                                    h4
+                                        a(href='#') {{user.name}}
+
+                    //ul
+                    //    li(ng-repeat='user in users')
+                    //        h3
+                    //            a(href='#') {{user.name}}
                 .col-lg-9.employeeAdd
                     .col-lg-8.employeeForm
-                        h1 Dylan King
+                        h1 Will Ferrell
                         .form-group
                             .form-group.employeeName
                                 label Full Name
-                                input.form-control
+                                input#name.form-control(type='text', value='Will Ferrell')
                             .form-group.employeeTitle
                                 label Title
                                 select.form-control
                                     option Mr.
                                     option Ms.
                                     option Mrs.
-                                    option Gangsta
-                                    option Master
+                                    option Dr.
                         .form-group
                             label Email
-                            input.form-control
+                            input.form-control(type='text', value='theRealWillFerrell@WillFerrell.com')
                         .form-group
                             label Phone Number
-                            input.form-control
+                            input.form-control(type='text', value='555-555-5555')
                         .employeeButtons
-                            button.btn.btn-primary.btn-lg(type='button', style='background-color:#95a5a6')
-                                a(href='#') Edit
-                            button.btn.btn-primary.btn-lg(type='button', style='background-color:#e74c3c')
-                                a(href='#') Delete
-                            button.btn.btn-primary.btn-lg(type='button', style='background-color:#3498db')
-                                a(href='#') Save
+                            button.btn.btn-primary.btn-lg(type='button', style="background-color:#d9534f") Cancel
+                            button.btn.btn-primary.btn-lg(type='button', style="background-color:#5bc0de") Edit
+                            //button.btn.col-md-5.btn-primary(type='submit', data-ng-click='editMode=false; editRowCollection(row);', style='margin:.3em .5em 0 0;')
+                            //    i.glyphicon.glyphicon-ok-circle
+                            //button.btn.col-md-5.btn-default(type='button', ng-click='cancel(row); editMode=false;', style='margin-top:.3em;')
+                            //    i.glyphicon.glyphicon-ban-circle

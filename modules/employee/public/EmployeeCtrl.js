@@ -4,7 +4,17 @@ angular.module("employee", [])
     // Employee Controllers ============================================================
     // =========================================================================
     .controller("EmployeeAllCtrl",[ "$scope", "EmployeeService", "$uibModal",
-        function ($scope, EmployeeService, $uibModal) {
+        function ($scope, $modal, EmployeeService, $uibModal) {
+
+
+            $scope.users =[{"name":"Natalie Portman"},{"name":"Ryan Gosling"},{"name":"Matt Damon"},{"name":"Will Ferrell"}];
+
+            $scope.addNew = function(user){
+                $scope.users.push(user);
+                $scope.current = {};
+            };
+
+            $scope.current = {};
 
 
     }])
