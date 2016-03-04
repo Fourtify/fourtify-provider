@@ -51,17 +51,17 @@ angular.module("fourtifyApp",
                 }
             })
 
-            // Visitors Queue
-            .state('visitors', {
-                url: "/visitors",
-                templateUrl: "/templates/visitors",
-                controller: "VisitorsAllCtrl",
+            // Appointments
+            .state('appointments', {
+                url: "/appointments",
+                templateUrl: "/templates/appointments",
+                controller: "ApptAllCtrl",
                 resolve: {
                     staff: function ($ocLazyLoad) {
                         return $ocLazyLoad.load(
                             {
-                                name: "visitors",
-                                files: ["/pub/visitors/VisitorsCtrl.js"]
+                                name: "appointments",
+                                files: ["/pub/appointments/ApptCtrl.js"]
                             }
                         );
                     }
