@@ -1,15 +1,33 @@
-angular.module("employee", [])
+angular.module("appointments", [])
 
     // =========================================================================
-    // Employee Controllers ============================================================
+    // Visitors Controllers ============================================================
     // =========================================================================
-    .controller("EmployeeAllCtrl",[ "$scope", "EmployeeService", "$uibModal",
-        function ($scope, EmployeeService, $uibModal) {
+    .controller("ApptAllCtrl",[ "$scope", "VisitorsService", "$uibModal",
+        function ($scope, VisitorsService, $uibModal) {
 
+
+        $scope.queue = [];
+
+        $scope.submitCreate = function(){
+            $scope.queue.push({
+                name: $scope.name,
+                provider: $scope.provider,
+                reason: $scope.reason,
+                date: $scope.date,
+                time: $scope.time
+            });
+            $scope.name="";
+            $scope.provider="";
+            $scope.reason="";
+            $scope.date="";
+            $scope.time="";
+            jQuery('#myModal').modal('hide');
+        };
 
     }])
 
-    .service('EmployeeService', [
+    .service('VisitorsService', [
         '$http',
         function ($http, $rootScope, $window) {
             return {
@@ -17,7 +35,7 @@ angular.module("employee", [])
                 getGroups: function(params, success, error) {
                     var req = {
                         method: 'GET',
-                        url: '/employee/groups',
+                        url: '/visitors',
                         params: params
                     };
                     this.apiCall(req, success, error);

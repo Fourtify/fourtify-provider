@@ -1,1 +1,98 @@
-//layout goes here
+doctype html
+html(lang='en', ng-app="fourtifyApp")
+    head
+        meta(charset='utf-8')
+        meta(http-equiv='X-UA-Compatible', content='IE=edge')
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+        meta(name='description', content="Fourtify's Receptionist portal to efficientlytrack visitors of your business")
+        meta(name='author', content='Fourtify')
+        base(href="/")
+        title Fourtify Provider
+        // Bootstrap Core CSS
+        link(href='/bower/bootstrap/dist/css/bootstrap.min.css', rel='stylesheet')
+        // MetisMenu CSS
+        link(href='/bower/metisMenu/dist/metisMenu.min.css', rel='stylesheet')
+        // Timeline CSS
+        link(href='/css/timeline.css', rel='stylesheet')
+        // Custom CSS
+        link(href='/css/nav.css', rel='stylesheet')
+        // Morris Charts CSS
+        link(href='/bower/morrisjs/morris.css', rel='stylesheet')
+        // Custom Fonts
+        link(href='/bower/font-awesome/css/font-awesome.min.css', rel='stylesheet', type='text/css')
+        link(href='/css/ionicons.css', rel='stylesheet', type='text/css')
+        link(src='https://www.google.com/fonts#UsePlace:use/Collection:Open+Sans')
+        // HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
+        // WARNING: Respond.js doesn't work if you view the page via file://
+        //if lt IE 9
+          script(src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
+          script(src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
+    body
+        // Navigation
+        nav.navbar.navbar-default.navbar-static-top(role='navigation', style='margin-bottom: 0; z-index: 100')
+            a.navbar-brand(href='index.html') PROVIDER
+            .username
+                a.dropdown-toggle(data-toggle='dropdown', href='#')
+                    | John Doe    
+                    i.fa.fa-caret-down
+                ul.dropdown-menu.dropdown-user
+                    li
+                        a(href='login.html')
+                            i.ion.ion-log-out
+                            |  Logout
+            // /.dropdown-user
+            // /.navbar-header
+        .navbar-default.sidebar(role='navigation')
+            .sidebar-nav
+                ul#side-menu.nav
+                    li.first
+                        // <div class="v-highlight"></div> USER LATER TO FIX BORDER HOVERING
+                        a(href='index.html')
+                            i.ion.ion-speedometer
+                            |  VISITORS QUEUE
+
+                    li
+                        a(href, ui-sref="appointments")
+                            i.ion.ion-ios-people
+                            |  APPOINTMENTS
+                    li
+                        a(href="index.html")
+                            i.ion.ion-ios-people
+                            |  VISITORS
+                    li
+                        a(href, ui-sref="employee")
+                            i.ion.ion-person-stalker
+                            |  EMPLOYEES
+                    li
+                        a(href='index.html')
+                            i.ion.ion-ios-list-outline
+                            |  FORMS
+                    li
+                        a(href='index.html')
+                            i.ion.ion-ios-gear
+                            |  SETTINGS
+            // /.sidebar-collapse
+        // /.navbar-static-side
+        #page-wrapper
+            ui-view
+        // /#wrapper
+        // jQuery
+        script(src='/bower/jquery/dist/jquery.min.js')
+        // Bootstrap Core JavaScript
+        script(src='/bower/bootstrap/dist/js/bootstrap.min.js')
+        // Metis Menu Plugin JavaScript
+        script(src='/bower/metisMenu/dist/metisMenu.min.js')
+        // Morris Charts JavaScript
+        script(src='/bower/raphael/raphael-min.js')
+        //script(src='/bower/morrisjs/morris.min.js')
+        //script(src='/js/morris-data.js')
+        // Custom Theme JavaScript
+        script(src='/js/sb-admin-2.js')
+        script(type="text/javascript",src="/bower/angular/angular.min.js")
+        script(type="text/javascript",src="/bower/ocLazyLoad/dist/ocLazyLoad.min.js")
+        script(type="text/javascript",src="/bower/angular-bootstrap/ui-bootstrap.min.js")
+        script(type="text/javascript",src="/bower/ng-file-upload/ng-file-upload.min.js")
+        script(type="text/javascript",src="/bower/angular-loading-bar/src/loading-bar.js")
+        script(type="text/javascript",src="/bower/angular-ui-router/release/angular-ui-router.min.js")
+        script(type="text/javascript",src="/bower/angular-local-storage/dist/angular-local-storage.min.js")
+        script(type="text/javascript", src="/js/angular-app.js")

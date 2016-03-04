@@ -65,14 +65,21 @@ app.use(session({
     saveUninitialized: true
 }));
 
+
 var AuthMiddleware = require("./modules/authentication/src/AuthMiddleware");
 
 
 var authenticationModule = require('./modules/authentication/app');
 app.use(authenticationModule);
 
-//var employeeModule = require('./modules/employee/app');
-//app.use(employeeModule);
+var employeeModule = require('./modules/employee/app');
+app.use(employeeModule);
+
+//var visitorsModule = require('./modules/visitors/app');
+//app.use(visitorsModule);
+
+var appointmentsModule = require('./modules/appointments/app');
+app.use(appointmentsModule);
 
 app.all("/api/myself", AuthMiddleware.authenticateApi(), function(req, res){
     res.status(200).send({

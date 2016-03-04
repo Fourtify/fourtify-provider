@@ -178,3 +178,52 @@
         border-left-width: 0;
     }
 }
+
+/* vistors*/
+
+#date {
+    float:left;
+    font-size:12px;
+}
+#newAppt {
+    margin-bottom: 10px;
+    margin-right: 15px;
+    float: right;
+    text-align: center;
+}
+.apptSearch {
+    width: 200px;
+    float: right;
+    margin-right: 15px;
+}
+
+.modal-body h4{
+    font-size: 14px;
+
+}
+.modal-dialog {
+    width: 400px;
+}
+
+.newApptDate, .newApptTime {
+    width: 170px;
+    height:35px;
+    border: 1px solid lightgrey;
+    border-radius: 3px;
+}
+
+#patientName {
+    width:300px;
+    height:35px;
+}
+
+.newApptInput {
+    width:370px;
+    height:35px;
+    border: 1px solid lightgrey;
+    border-radius: 3px;
+}
+
+h1{
+    font-size: 28px;
+}

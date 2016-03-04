@@ -1,0 +1,65 @@
+.container-fluid
+    .row
+        .col-lg-12
+            h1.page-header APPOINTMENTS
+            html
+                body
+                    .row
+                        input.apptSearch.form-control.ng-isolate-scope(st-search='', placeholder='Search Visitors', type='text')
+                        button#newAppt.btn.btn-info(type='button', data-toggle='modal', data-target='#myModal') CREATE A NEW APPOINTMENT
+
+
+        // Modal
+        #myModal.modal.fade(role='dialog')
+            .modal-dialog(ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg'}")
+                // Modal content
+                .modal-content
+                    .modal-header
+                        button.close(type='button', data-dismiss='modal') ×
+                        h4.modal-title CREATE A NEW APPOINTMENT
+                    .modal-body
+                        h4 FULL NAME
+                        input.inputBox.newApptInput(type='text', ng-model="name")
+                        h4 PROVIDER
+                        input.inputBox.newApptInput(type='text', ng-model="provider")
+                        h4 REASON FOR VISIT
+                        input.inputBox.newApptInput(type='text', ng-model="reason")
+                        .row
+                            .col-md-6
+                                h4 DATE
+                                input.inputBox.newApptDate(type='text', ng-model="date")
+                            .col-md-6
+                                h4 TIME
+                                input.inputBox.newApptTime(type='text', ng-model="time")
+                    .modal-footer
+                        button.btn.btn-default(type='button', data-dismiss='modal') Cancel
+                        button.btn.btn-primary(type='submit', ng-click="submitCreate()") Submit
+        .row
+            .col-lg-12
+                // /.panel-heading
+                .panel-body
+                    .dataTable_wrapper
+                        table#dataTables-example.table.table-hover
+                            thead
+                                tr
+                                    th NAME
+                                    th PROVIDER
+                                    th REASON FOR VISIT
+                                    th DATE
+                                    th TIME
+                                    th ACTION
+                            tbody
+                                tr.odd.gradeX(ng-repeat="q in queue")
+                                    td {{q.name}}
+                                    td {{q.provider}}
+                                    td {{q.reason}}
+                                    td {{q.date}}
+                                    td {{q.time}}
+                                    td Check Out
+
+    script.
+        /*$(document).ready(function () {
+            $('#dataTables-example').DataTable({
+                responsive: true
+            });
+        });*/
