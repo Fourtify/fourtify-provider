@@ -4,12 +4,11 @@
 var request = require("request")
 
 //will post to the default channel, aka "test"
-var data = JSON.stringify({
-    username: "fourtify-bot",
-    //text: "Client has arrived for appointment, blah blah blah.",
-    text: "Hello world!",
-    icon_emoji: ":clock2:" //emoji of a clock; we can change this later if you fellas don't like it
-});
+var data = {
+    "username": "fourtify-bot",
+    "text": "Hello world!",
+    "icon_emoji": ":clock2:"
+};
 
 request({
     //url for the fourtify slack team
