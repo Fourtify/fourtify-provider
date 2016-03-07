@@ -68,6 +68,23 @@ angular.module("fourtifyApp",
                 }
             })
 
+            // Settings
+            .state('settings', {
+                url: "/settings",
+                templateUrl: "/templates/settings",
+                controller: "SettingsAllCtrl",
+                resolve: {
+                    staff: function ($ocLazyLoad) {
+                        return $ocLazyLoad.load(
+                            {
+                                name: "settings",
+                                files: ["/pub/settings/SettingsCtrl.js"]
+                            }
+                        );
+                    }
+                }
+            })
+
         $locationProvider.html5Mode(true);
 
     })
