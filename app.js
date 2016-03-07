@@ -74,7 +74,11 @@ app.use(authenticationModule);
 
 var employeeModule = require('./modules/employee/app');
 app.use(employeeModule);
-
+app.use("/slack",function(req,res){
+   // "use strict";
+    require("./modules/slack/SlackPost");
+    res.status(200).send("Hooray");
+})
 //var visitorsModule = require('./modules/visitors/app');
 //app.use(visitorsModule);
 
