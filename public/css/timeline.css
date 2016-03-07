@@ -179,7 +179,7 @@
     }
 }
 
-/* vistors*/
+/* appointments*/
 
 #date {
     float:left;
@@ -226,4 +226,10 @@
 
 h1{
     font-size: 28px;
+}
+
+.odd .btn {
+    height:35px;
+    width:35px;
+    margin:2px;
 }
