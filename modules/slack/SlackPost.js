@@ -3,15 +3,17 @@
  */
 var request = require("request")
 
+//will post to the default channel, aka "test"
 var data = JSON.stringify({
-    username: "Fourtify Bot",
-    text: "Client has arrived for appointment, blah blah blah.",
+    username: "fourtify-bot",
+    //text: "Client has arrived for appointment, blah blah blah.",
+    text: "Hello world!",
     icon_emoji: ":clock2:" //emoji of a clock; we can change this later if you fellas don't like it
 });
 
 request({
-    //temporary url; need to set up a new slack team first
-    url: "https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX",
+    //url for the fourtify slack team
+    url: "https://hooks.slack.com/services/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",
     method: "POST",
     json: true,
     headers: {
