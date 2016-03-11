@@ -79,6 +79,26 @@ angular.module("fourtifyApp",
                 }
             })
 
+
+            // Visitor History
+            .state('queueHistory', {
+                url: "/queueHistory",
+                templateUrl: "/templates/queueHistory",
+                controller: "QHAllCtrl",
+                resolve: {
+                    staff: function ($ocLazyLoad) {
+                        return $ocLazyLoad.load(
+                            {
+                                name: "queueHistory",
+                                files: ["/pub/queueHistory/QHCtrl.js"]
+                            }
+                        );
+                    }
+                }
+            })
+
+
+
             // Settings
             .state('settings', {
                 url: "/settings",

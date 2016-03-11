@@ -1,0 +1,52 @@
+.container-fluid
+    .row
+        .col-lg-12
+            h1.page-header VISITOR HISTORY
+            html
+                body
+                    .row
+                        input.apptSearch.form-control.ng-isolate-scope(st-search='', placeholder='Search Visitors', type='text')
+
+        .row
+            .col-lg-12
+                // /.panel-heading
+                .panel-body
+                    .dataTable_wrapper
+                        table#dataTables-example.table.table-hover
+                            thead
+                                tr
+                                    th NAME
+                                    th PROVIDER
+                                    th REASON FOR VISIT
+                                    th DATE
+                                    th TIME
+                                    th ACTION
+                            tbody
+                                tr.odd.gradeX(ng-repeat="q in queue")
+                                    td(style='min-width:10em;max-width:10em;', data-ng-click='editMode = true; editRowCollection(q)')
+                                        .center(data-ng-hide='editMode')
+                                            span {{q.name}}
+                                        input.form-control.edit-input(name='name', type='text', data-ng-show='editMode', data-ng-model='q.name')
+                                    td(style='min-width:10em;max-width:10em;', data-ng-click='editMode = true; editRowCollection(q)')
+                                        .center(data-ng-hide='editMode')
+                                            span {{q.provider}}
+                                        input.form-control.edit-input(name='name', type='text', data-ng-show='editMode', data-ng-model='q.provider')
+                                    td(style='min-width:10em;max-width:10em;', data-ng-click='editMode = true; editRowCollection(q)')
+                                        .center(data-ng-hide='editMode')
+                                            span {{q.reason}}
+                                        input.form-control.edit-input(name='name', type='text', data-ng-show='editMode', data-ng-model='q.reason')
+                                    td(style='min-width:10em;max-width:10em;', data-ng-click='editMode = true; editRowCollection(q)')
+                                        .center(data-ng-hide='editMode')
+                                            span {{q.date}}
+                                        input.form-control.edit-input(name='name', type='text', data-ng-show='editMode', data-ng-model='q.date')
+                                    td(style='min-width:10em;max-width:10em;', data-ng-click='editMode = true; editRowCollection(q)')
+                                        .center(data-ng-hide='editMode')
+                                            span {{q.time}}
+                                        input.form-control.edit-input(name='name', type='text', data-ng-show='editMode', data-ng-model='q.time')
+                                    td Check Out
+                                    td
+                                        button.btn.col-md-5.btn-primary(type='submit', data-ng-show='editMode', data-ng-click='editMode=false; editRowCollection(q);')
+                                            i.glyphicon.glyphicon-ok-circle
+                                        button.btn.col-md-5.btn-default(type='button', data-ng-show='editMode', ng-click='cancel(q); editMode=false;')
+                                            i.glyphicon.glyphicon-ban-circle
+//layout goes here
