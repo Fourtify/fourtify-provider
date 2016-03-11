@@ -72,9 +72,6 @@ var AuthMiddleware = require("./modules/authentication/src/AuthMiddleware");
 var authenticationModule = require('./modules/authentication/app');
 app.use(authenticationModule);
 
-var dashboardModule = require('./modules/engine/app');
-app.use(dashboardModule);
-
 var employeeModule = require('./modules/employee/app');
 app.use(employeeModule);
 
@@ -84,8 +81,13 @@ app.use(employeeModule);
 var appointmentsModule = require('./modules/appointments/app');
 app.use(appointmentsModule);
 
-var settingsModule = require('./modules/settings/app');
-app.use(settingsModule);
+
+
+//var settingsModule = require('./modules/settings/app');
+//app.use(settingsModule);
+
+var engine = require('./modules/engine/app');
+app.use(engine);
 
 app.all("/api/myself", AuthMiddleware.authenticateApi(), function(req, res){
     res.status(200).send({
