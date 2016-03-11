@@ -72,6 +72,9 @@ var AuthMiddleware = require("./modules/authentication/src/AuthMiddleware");
 var authenticationModule = require('./modules/authentication/app');
 app.use(authenticationModule);
 
+var dashboardModule = require('./modules/engine/app');
+app.use(dashboardModule);
+
 var employeeModule = require('./modules/employee/app');
 app.use(employeeModule);
 

@@ -29,10 +29,21 @@ angular.module("fourtifyApp",
                     $state.go('dashboard');
                 }
             })
-            /*.state('dashboard', {
+            .state('dashboard', {
                 url: "/dashboard",
                 templateUrl: "/templates/dashboard"
-            })*/
+                /*controller: "QueueAllCtrl",
+                resolve: {
+                    queue: function ($ocLazyLoad) {
+                        return $ocLazyLoad.load(
+                            {
+                                name: "queue",
+                                files: ["/pub/engine/QueueCtrl.js"]
+                            }
+                        );
+                    }
+                }*/
+            })
 
             // Employee
             .state('employee', {
