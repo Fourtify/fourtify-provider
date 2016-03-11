@@ -83,8 +83,8 @@ app.use(appointmentsModule);
 
 
 
-//var settingsModule = require('./modules/settings/app');
-//app.use(settingsModule);
+var settingsModule = require('./modules/settings/app');
+app.use(settingsModule);
 
 var engine = require('./modules/engine/app');
 app.use(engine);

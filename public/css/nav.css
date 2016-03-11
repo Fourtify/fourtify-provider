@@ -118,19 +118,19 @@ html, body {
     padding-top: 15px;
 }
 
-/*.sidebar .v-highlight{
+.sidebar .v-highlight{
     display: none;
     width: 7px;
     height: 100%;
     float: left;
     background-color: #2DC5D3;
-} USER LATER TO FIX BORDER HOVERING*/
-
-.sidebar ul li a.active {
-    background-color: #3D4B5D;
-    border-left: 5px solid #2DC5D3;
 }
 
+.sidebar ul li a.active {
+    background-color: #354150;
+}
+
+/* text */
 .sidebar ul li a:hover{
     background-color: #3D4B5D;
     border-left: 5px solid #2DC5D3;
