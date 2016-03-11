@@ -30,7 +30,7 @@ angular.module("employee", [])
                 $scope.newField = angular.copy(q);
             };
 
-            /* This function allows appointments to be removed from the Appointments
+            /* This function allows employees to be removed from the Employees
              dashboard inside fourtify-provider. */
             $scope.removeEmployee = function(q) {
                 var indexOfEmployee =  findIndexOfObject($scope.employeeList, q);
