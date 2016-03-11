@@ -1,89 +1,74 @@
-// Page Content
-#page-wrapper
-    .container-fluid
+.container-fluid
+    .row
+        .col-lg-12
+            h1.page-header EMPLOYEES
+            html
+                body
+                    .row
+                        input.apptSearch.form-control.ng-isolate-scope(st-search='', placeholder='Search Employees', type='text')
+                        button#newAppt.btn.btn-info(type='button', data-toggle='modal', data-target='#myModal') NEW EMPLOYEE
+                        .row
+                            .col-lg-12
+                                #bs-example-navbar-collapse-1.collapse.navbar-collapse
+                                    ul.nav.navbar-nav.navbar-right
+                                        li
+                                            a(href='#') Directory
+                                        li
+                                            a(href='#') Import CSV
+
+        // Modal
+        #myModal.modal.fade(role='dialog')
+            .modal-dialog(ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg'}")
+                // Modal content
+                .modal-content
+                    .modal-header
+                        button.close(type='button', data-dismiss='modal') ×
+                        h4.modal-title ADD NEW EMPLOYEE
+                    .modal-body
+                        h4 FULL NAME
+                        input.inputBox.newApptInput(type='text', ng-model="name")
+                        h4 TITLE
+                        input.inputBox.newApptInput(type='text', ng-model="title")
+                        h4 EMAIL
+                        input.inputBox.newApptInput(type='text', ng-model="email")
+                        h4 PHONE NUMBER
+                        input.inputBox.newApptInput(type='text', ng-model="phoneNumber")
+                    .modal-footer
+                        button.btn.btn-default(type='button', data-dismiss='modal') Cancel
+                        button.btn.btn-primary(type='submit', ng-click="createEmployee()") Submit
         .row
             .col-lg-12
-                h1.page-header.employeeHeader Employees
-                form.employeeSearch
-                    input(type='text', name='search', placeholder='Search Employees')
-                    br
-            .col-lg-12
-                #bs-example-navbar-collapse-1.collapse.navbar-collapse
-                    ul.nav.navbar-nav.navbar-right
-                        li
-                            a(href='#') Directory
-                        li
-                            a(href='#') Import CSV
-                                    //Modal Controller
-            .col-lg-12(ng-controller='EmployeeAllCtrl')
-                button#newAppt.btn.btn-info(style="margin-top:10px",type='button', data-toggle='modal', data-target='#myModal') ADD NEW EMPLOYEE
-                // Modal
-                #myModal.modal.fade(role='dialog')
-                    .modal-dialog(ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg'}")
-                        // Modal content
-                        .modal-content
-                            .modal-header
-                                button.close(type='button', data-dismiss='modal') ×
-                                h4.modal-title ADD NEW EMPLOYEE
-                            .modal-body
-                                .form-group.employeeName
-                                    label Full Name
-                                    input#name.form-control(type='text', ng-model='current.name', value='{{current.name}}')
-                                .form-group.employeeTitle
-                                    label Title
-                                    select.form-control
-                                        option Mr.
-                                        option Ms.
-                                        option Mrs.
-                                        option Dr.
-                                .form-group
-                                    label Email
-                                    input.form-control
-                                .form-group
-                                    label Phone Number
-                                    input.form-control
-                            .modal-footer
-                                button.btn.btn-default(type='button', data-dismiss='modal') Cancel
-                                button.btn.btn-primary(ng-click='addNew(current)', type='submit', data-dismiss='modal') Add
-                .col-lg-3.employeeList
-                    table.table.table-striped
-                        thead
-                            tr
-                                th Name
-                        tbody
-                            tr(ng-repeat='user in users')
-                                td
-                                    h4
-                                        a(href='#') {{user.name}}
-
-                    //ul
-                    //    li(ng-repeat='user in users')
-                    //        h3
-                    //            a(href='#') {{user.name}}
-                .col-lg-9.employeeAdd
-                    .col-lg-8.employeeForm
-                        h1 Will Ferrell
-                        .form-group
-                            .form-group.employeeName
-                                label Full Name
-                                input#name.form-control(type='text', value='Will Ferrell')
-                            .form-group.employeeTitle
-                                label Title
-                                select.form-control
-                                    option Mr.
-                                    option Ms.
-                                    option Mrs.
-                                    option Dr.
-                        .form-group
-                            label Email
-                            input.form-control(type='text', value='theRealWillFerrell@WillFerrell.com')
-                        .form-group
-                            label Phone Number
-                            input.form-control(type='text', value='555-555-5555')
-                        .employeeButtons
-                            button.btn.btn-primary.btn-lg(type='button', style="background-color:#d9534f") Cancel
-                            button.btn.btn-primary.btn-lg(type='button', style="background-color:#5bc0de") Edit
-                            //button.btn.col-md-5.btn-primary(type='submit', data-ng-click='editMode=false; editRowCollection(row);', style='margin:.3em .5em 0 0;')
-                            //    i.glyphicon.glyphicon-ok-circle
-                            //button.btn.col-md-5.btn-default(type='button', ng-click='cancel(row); editMode=false;', style='margin-top:.3em;')
-                            //    i.glyphicon.glyphicon-ban-circle
+                // /.panel-heading
+                .panel-body
+                    .dataTable_wrapper
+                        table#dataTables-example.table.table-hover
+                            thead
+                                tr
+                                    th NAME
+                                    th TITLE
+                                    th EMAIL
+                                    th PHONE NUMBER
+                            tbody
+                                tr.odd.gradeX(ng-repeat="q in employeeList")
+                                    td(style='min-width:10em;max-width:10em;', data-ng-click='editMode = true; editRowCollection(q)')
+                                        .center(data-ng-hide='editMode')
+                                            span {{q.name}}
+                                        input.form-control.edit-input(name='name', type='text', data-ng-show='editMode', data-ng-model='q.name')
+                                    td(style='min-width:10em;max-width:10em;', data-ng-click='editMode = true; editRowCollection(q)')
+                                        .center(data-ng-hide='editMode')
+                                            span {{q.title}}
+                                        input.form-control.edit-input(name='name', type='text', data-ng-show='editMode', data-ng-model='q.title')
+                                    td(style='min-width:10em;max-width:10em;', data-ng-click='editMode = true; editRowCollection(q)')
+                                        .center(data-ng-hide='editMode')
+                                            span {{q.email}}
+                                        input.form-control.edit-input(name='name', type='text', data-ng-show='editMode', data-ng-model='q.email')
+                                    td(style='min-width:5em;max-width:5em;', data-ng-click='editMode = true; editRowCollection(q)')
+                                        .center(data-ng-hide='editMode')
+                                            span {{q.phoneNumber}}
+                                        input.form-control.edit-input(name='name', type='text', data-ng-show='editMode', data-ng-model='q.phoneNumber')
+                                    td EDIT
+                                    td
+                                        button.btn.col-md-5.btn-primary(type='submit', data-ng-show='editMode', data-ng-click='editMode=false; editRowCollection(q);')
+                                            i.glyphicon.glyphicon-ok-circle
+                                        button.btn.col-md-5.btn-default(type='button', data-ng-show='editMode', ng-click='removeEmployee(q); editMode=false;')
+                                            i.glyphicon.glyphicon-ban-circle

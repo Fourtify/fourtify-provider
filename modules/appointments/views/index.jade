@@ -5,7 +5,7 @@
             html
                 body
                     .row
-                        input.apptSearch.form-control.ng-isolate-scope(st-search='', placeholder='Search Visitors', type='text')
+                        input.apptSearch.form-control.ng-isolate-scope(st-search='', placeholder='Search Appointments', type='text')
                         button#newAppt.btn.btn-info(type='button', data-toggle='modal', data-target='#myModal') CREATE A NEW APPOINTMENT
 
         // Modal
@@ -61,11 +61,11 @@
                                         .center(data-ng-hide='editMode')
                                             span {{q.reason}}
                                         input.form-control.edit-input(name='name', type='text', data-ng-show='editMode', data-ng-model='q.reason')
-                                    td(style='min-width:10em;max-width:10em;', data-ng-click='editMode = true; editRowCollection(q)')
+                                    td(style='min-width:5em;max-width:5em;', data-ng-click='editMode = true; editRowCollection(q)')
                                         .center(data-ng-hide='editMode')
                                             span {{q.date}}
                                         input.form-control.edit-input(name='name', type='text', data-ng-show='editMode', data-ng-model='q.date')
-                                    td(style='min-width:10em;max-width:10em;', data-ng-click='editMode = true; editRowCollection(q)')
+                                    td(style='min-width:5em;max-width:5em;', data-ng-click='editMode = true; editRowCollection(q)')
                                         .center(data-ng-hide='editMode')
                                             span {{q.time}}
                                         input.form-control.edit-input(name='name', type='text', data-ng-show='editMode', data-ng-model='q.time')
@@ -73,5 +73,5 @@
                                     td
                                         button.btn.col-md-5.btn-primary(type='submit', data-ng-show='editMode', data-ng-click='editMode=false; editRowCollection(q);')
                                             i.glyphicon.glyphicon-ok-circle
-                                        button.btn.col-md-5.btn-default(type='button', data-ng-show='editMode', ng-click='cancel(q); editMode=false;')
+                                        button.btn.col-md-5.btn-default(type='button', data-ng-show='editMode', ng-click='cancelAppointment(q); editMode=false;')
                                             i.glyphicon.glyphicon-ban-circle

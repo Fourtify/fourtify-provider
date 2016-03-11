@@ -34,8 +34,8 @@ angular.module("appointments", [])
         };
 
         /* This function allows appointments to be removed from the Appointments
-            dashboard. */
-        $scope.cancel = function(q) {
+            dashboard inside fourtify-provider. */
+        $scope.cancelAppointment = function(q) {
             var indexOfAppointment =  findIndexOfObject($scope.queue, q);
             $scope.queue.splice(indexOfAppointment, 1);
         }
