@@ -33,11 +33,12 @@ angular.module("appointments", [])
             $scope.newField = angular.copy(q);
         };
 
+        /* This function allows appointments to be removed from the Appointments
+            dashboard. */
         $scope.cancel = function(q) {
-            $scope.queue[$scope.editing] = $scope.newField;
-            $scpope.displayedCollection = $scope.queue;
+            var indexOfAppointment =  findIndexOfObject($scope.queue, q);
+            $scope.queue.splice(indexOfAppointment, 1);
         }
-
     }])
 
     .service('VisitorsService', [
@@ -65,3 +66,15 @@ angular.module("appointments", [])
             };
         }
     ]);
+
+    /* Finds the index of an object inside the array representing
+       the appointments.
+     */
+    function findIndexOfObject(arrayToSearch, keyToFind) {
+        for (var i = 0; i < arrayToSearch.length; i++) {
+            if (arrayToSearch[i] == keyToFind) {
+                return i;
+            }
+        }
+        return null;
+    }
