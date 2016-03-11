@@ -16,6 +16,7 @@ html(lang='en', ng-app="fourtifyApp")
         link(href='/css/timeline.css', rel='stylesheet')
         // Custom CSS
         link(href='/css/nav.css', rel='stylesheet')
+        link(href='/css/employee.css', rel='stylesheet')
         // Morris Charts CSS
         link(href='/bower/morrisjs/morris.css', rel='stylesheet')
         // Custom Fonts
@@ -47,7 +48,7 @@ html(lang='en', ng-app="fourtifyApp")
                 ul#side-menu.nav
                     li.first
                         // <div class="v-highlight"></div> USER LATER TO FIX BORDER HOVERING
-                        a(href='index.html')
+                        a(href, ui-sref="dashboard")
                             i.ion.ion-speedometer
                             |  VISITORS QUEUE
 
@@ -56,7 +57,7 @@ html(lang='en', ng-app="fourtifyApp")
                             i.ion.ion-ios-people
                             |  APPOINTMENTS
                     li
-                        a(href="index.html")
+                        a(href, ui-sref="visitors")
                             i.ion.ion-ios-people
                             |  VISITORS
                     li
@@ -64,11 +65,11 @@ html(lang='en', ng-app="fourtifyApp")
                             i.ion.ion-person-stalker
                             |  EMPLOYEES
                     li
-                        a(href='index.html')
+                        a(href, ui-sref="forms")
                             i.ion.ion-ios-list-outline
                             |  FORMS
                     li
-                        a(href='index.html')
+                        a(href, ui-sref="settings")
                             i.ion.ion-ios-gear
                             |  SETTINGS
             // /.sidebar-collapse

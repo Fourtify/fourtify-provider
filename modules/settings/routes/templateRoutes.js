@@ -3,10 +3,10 @@ var router = express.Router();
 var AuthMiddleware = require('../../authentication/src/AuthMiddleware');
 
 // =========================================================================
-// Create Contact - GET ============================================================
+// Queue - GET ============================================================
 // =========================================================================
-router.get('/dashboard', /*AuthMiddleware.authenticateApi(),*/ function(req, res) {
-    res.render('dashboard');
+router.get('/', /*AuthMiddleware.authenticate(),*/ function(req, res) {
+    res.render('index');
 });
 
 module.exports = router;

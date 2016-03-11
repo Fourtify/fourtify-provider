@@ -1,25 +1,15 @@
-angular.module("employee", [])
+angular.module("settings", [])
 
     // =========================================================================
-    // Employee Controllers ============================================================
+    // Visitors Controllers ============================================================
     // =========================================================================
-    .controller("EmployeeAllCtrl",[ "$scope", "EmployeeService", "$uibModal",
-        function ($scope, $modal, EmployeeService, $uibModal) {
+    .controller("SettingsAllCtrl",[ "$scope", "SettingsService", "$uibModal",
+        function ($scope, SettingsService, $uibModal) {
 
 
-            $scope.users =[{"name":"Natalie Portman"},{"name":"Ryan Gosling"},{"name":"Matt Damon"},{"name":"Will Ferrell"}];
+        }])
 
-            $scope.addNew = function(user){
-                $scope.users.push(user);
-                $scope.current = {};
-            };
-
-            $scope.current = {};
-
-
-    }])
-
-    .service('EmployeeService', [
+    .service('SettingsService', [
         '$http',
         function ($http, $rootScope, $window) {
             return {
@@ -27,7 +17,7 @@ angular.module("employee", [])
                 getGroups: function(params, success, error) {
                     var req = {
                         method: 'GET',
-                        url: '/employee/groups',
+                        url: '/settings',
                         params: params
                     };
                     this.apiCall(req, success, error);

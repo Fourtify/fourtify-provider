@@ -24,6 +24,19 @@ angular.module("appointments", [])
             $scope.time="";
             jQuery('#myModal').modal('hide');
         };
+        $scope.newField = {};
+        $scope.editing = false;
+        $scope.displayedCollection = [].concat($scope.queue);
+
+        $scope.editRowCollection = function(q) {
+            $scope.editing = $scope.queue.indexOf(q);
+            $scope.newField = angular.copy(q);
+        };
+
+        $scope.cancel = function(q) {
+            $scope.queue[$scope.editing] = $scope.newField;
+            $scpope.displayedCollection = $scope.queue;
+        }
 
     }])
 

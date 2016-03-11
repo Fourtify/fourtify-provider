@@ -179,7 +179,7 @@
     }
 }
 
-/* vistors*/
+/* appointments*/
 
 #date {
     float:left;
@@ -226,4 +226,87 @@
 
 h1{
     font-size: 28px;
+}
+
+.odd .btn {
+    height:35px;
+    width:35px;
+    margin:2px;
+}
+/* Settings */
+.logo {
+    height:60%;
+    width:60%;
+    border: 1px solid #808080;
+}
+#select-a-file {
+    margin-top: 30px;
+    width: 65%;
+    height:45px;
+}
+
+#left {
+    margin-top: 25px;
+    width:350px;
+    text-align: center;
+}
+#right {
+    width:400px;
+}
+#right h2 {
+    font-size: 20px;
+}
+#right h3 {
+    color: #808080;
+    font-size: 14px;
+}
+#right p {
+    color: #808080;
+    font-size: 14px;
+}
+.inputBox {
+    width:350px;
+    height:39px;
+}
+
+#accent-color {
+    width:150px;
+    height:45px;
+    font-size: 12px;
+}
+#accent-color-left {
+    width:180px;
+    float:left;
+    vertical-align: center;
+}
+#accent-color-right {
+    margin-left:200px;
+}
+#settings-cancel {
+    width:210px;
+    float:left;
+    text-align: right;
+    margin-bottom: 100px;
+}
+#settings-submit {
+    margin-left:100px;
+    margin-top:25px;
+    margin-bottom: 100px;
+}
+#submit-button {
+    margin-left: 20px;
+    height:45px;
+    width:120px;
+}
+#cancel-button {
+    height:45px;
+    width:120px;
+}
+.modal-body h3 {
+    color: #808080;
+    font-size: 14px;
+}
+
+#container-fluid {
+    margin: 0 auto;
 }

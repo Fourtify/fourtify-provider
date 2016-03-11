@@ -22,7 +22,7 @@ router.post('/api/login', function (req, res) {
                 "Content-Type": "application/x-www-form-urlencoded"
             },
             method: "POST",
-            uri: API_URL+"/authentication/token/staff",
+            uri: API_URL+"/authentication/token",
             form: {
                 grant_type: "password",
                 email: req.body.email,
