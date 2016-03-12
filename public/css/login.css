@@ -1,0 +1,90 @@
+@import "compass/css3";
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: #1ab188;
+  transition: .5s ease;
+}
+a:hover {
+  color:#1ab199;
+}
+
+html {
+	overflow-y: scroll;
+}
+
+body {
+  background:#354150;
+  font-family: 'Arial', sans-serif;
+}
+
+
+
+.form {
+  background:#354150;
+  padding: 35px;
+  max-width:350px;
+  margin:180px auto;
+  border-radius:4px;
+
+}
+
+h1 {
+  text-align:center;
+  color:#ffffff;
+  font-size:60px;
+  margin:0 0 20px;
+}
+
+input, textarea {
+  font-size:15px;
+  display:block;
+  width:97%;
+  height:35px;
+  padding:5px 10px;
+  background:none;
+  background-image:none;
+  border:1px solid #a0b3b0;
+  color: #ffffff;;
+  border-radius:3px;
+  transition:border-color .25s ease, box-shadow .25s ease;
+}
+
+.field-wrap {
+  position:relative;
+  margin-bottom:25px;
+}
+
+.button {
+  border: 0;
+  outline: none;
+  border-radius: 3px;
+  padding: 10px 0;
+  font-size: 22px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  background: #1ab188;
+  color: #ffffff;
+  transition: all .5s ease;
+  -webkit-appearance: none;
+}
+.button:hover {
+    background:#1ab399;
+                  }
+
+
+.button-block {
+  display:block;
+  width:100%;
+}
+
+.forgot {
+  margin-top:-20px;
+  text-align:right;
+  font-size: small;
+}
