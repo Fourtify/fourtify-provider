@@ -4,8 +4,6 @@ var request = require('request');
 
 var config = require('../../../config/config.json')[environment];
 var API_URL = config.apiUrl;
-//@todo hard coded provider, will need to change later
-var SITE_AUTH_BASE64 = "NDE1ZTg1YzMxYjJmNDgyZmVhY2FjNzY4Y2IyMzdjZjU6YjQwZGQ0MWY0MTcyYzY2OTdiM2IzYWJkZTcwMWExYzc=";
 
 var express = require('express');
 var router = express.Router();
@@ -16,22 +14,14 @@ router.get('/login', function (req, res) {
     });
 });
 router.post('/api/login', function (req, res) {
+    var localProvider;
     request({
-            headers: {
-                "Authorization": "Basic "+SITE_AUTH_BASE64,
-                "Content-Type": "application/x-www-form-urlencoded"
-            },
-            method: "POST",
-            uri: API_URL+"/authentication/token",
-            form: {
-                grant_type: "password",
-                email: req.body.email,
-                password: req.body.password
-            }
+            method: "GET",
+            uri: API_URL+"/providers?domain="+req.body.domain
         },
         function (error, response, body) {
             if (error) {
-                return res.status(500).send(err);
+                return res.status(500).send(error);
             }
             else if(response.statusCode !== 200){
                 body = JSON.parse(body);
@@ -39,28 +29,58 @@ router.post('/api/login', function (req, res) {
             }
             else{
                 body = JSON.parse(body);
-                req.session.redirectUrl = null;
-                req.session.accessToken = body.accessToken;
-                req.session.refreshToken = body.refreshToken;
-                req.session.provider = body.provider;
-                req.session.employee = body.employee;
-                req.session.save(function(err){
-                    if(err){
-                        return res.status(500).send(err);
-                    }
-                    else{
-                        return res.status(response.statusCode).send(body);
-                    }
-                });
+                localProvider = body;
+                request({
+                        headers: {
+                            "Authorization": "Basic "+(new Buffer(localProvider._clientId+":"+localProvider._clientSecret).toString('base64')),
+                            "Content-Type": "application/x-www-form-urlencoded"
+                        },
+                        method: "POST",
+                        uri: API_URL+"/authentication/token",
+                        form: {
+                            grant_type: "password",
+                            email: req.body.email,
+                            password: req.body.password
+                        }
+                    },
+                    function (error, response, body) {
+                        if (error) {
+                            return res.status(500).send(error);
+                        }
+                        else if(response.statusCode !== 200){
+                            body = JSON.parse(body);
+                            return res.status(response.statusCode).send(body);
+                        }
+                        else{
+                            body = JSON.parse(body);
+                            req.session.redirectUrl = null;
+                            req.session.accessToken = body.accessToken;
+                            req.session.refreshToken = body.refreshToken;
+                            req.session.provider = body.provider;
+                            req.session.employee = body.employee;
+                            req.session.save(function(err){
+                                if(err){
+                                    return res.status(500).send(err);
+                                }
+                                else{
+                                    return res.status(response.statusCode).send(body);
+                                }
+                            });
+                        }
+
+                    });
             }
-
         });
-
 } );
 
 
 router.get('/logout',  function (req, res) {
-    //res.render('login');
+    req.session.redirectUrl = null;
+    req.session.accessToken = null;
+    req.session.refreshToken = null;
+    req.session.provider = null;
+    req.session.employee = null;
+    res.render('login');
     //@todo delete session, call api to logout, and redirect to login + req.logout();
 });
 

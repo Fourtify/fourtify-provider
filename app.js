@@ -86,8 +86,6 @@ app.use(appointmentsModule);
 var settingsModule = require('./modules/settings/app');
 app.use(settingsModule);
 
-var engine = require('./modules/engine/app');
-app.use(engine);
 
 app.all("/api/myself", AuthMiddleware.authenticateApi(), function(req, res){
     res.status(200).send({
