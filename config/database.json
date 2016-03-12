@@ -1,29 +1,29 @@
 {
     "production": {
-        "host": "ds037824.mlab.com",
-        "db": "fourtify-provider-prod",
-        "port": "37824",
+        "host": "ds047305.mongolab.com",
+        "db": "fourtify-api-prod",
+        "port": "47305",
         "credentials": {
-            "user": "fourtify-provider-prod",
-            "pass": "fourtify-provider-prod333"
+            "user": "fourtify-api-prod",
+            "pass": "fourtify-api-prod333"
         }
     },
     "development": {
-        "host": "ds045684.mlab.com",
-        "db": "fourtify-provider-dev",
-        "port": "45684",
+        "host": "ds047095.mlab.com",
+        "db": "fourtify-api-dev",
+        "port": "47095",
         "credentials": {
-            "user": "fourtify-provider-dev",
-            "pass": "fourtify-provider-dev333"
+            "user": "fourtify-api-dev",
+            "pass": "fourtify-api-dev333"
         }
     },
     "test": {
-        "host": "ds045684.mlab.com",
-        "db": "fourtify-provider-test",
-        "port": "45684",
+        "host": "ds047355.mongolab.com",
+        "db": "fourtify-api-test",
+        "port": "47355",
         "credentials": {
-            "user": "fourtify-provider-test",
-            "pass": "fourtify-provider-test333"
+            "user": "fourtify-api-test",
+            "pass": "fourtify-api-test333"
         }
     }
 }
