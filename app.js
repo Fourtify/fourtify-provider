@@ -81,6 +81,8 @@ app.use(visitorsModule);
 var appointmentsModule = require('./modules/appointments/app');
 app.use(appointmentsModule);
 
+var formsModule = require('./modules/forms/app');
+app.use(formsModule);
 
 
 var settingsModule = require('./modules/settings/app');
