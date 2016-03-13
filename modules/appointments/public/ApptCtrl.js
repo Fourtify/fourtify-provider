@@ -1,5 +1,6 @@
 angular.module("appointments", [])
 
+
     // =========================================================================
     // Appointments Controllers ============================================================
     // =========================================================================
@@ -7,22 +8,33 @@ angular.module("appointments", [])
         function ($scope, AppointmentsService, $uibModal) {
 
         $scope.appointments = [];
+
+
+            //moment().format(lll);
+
         AppointmentsService.getAppointments(
             {},
             //success function
             function(data) {
                 $scope.clearMessages();
+                console.log("data "+i+": "+JSON.stringify(data));
                 for(var i = 0; i < data.length; i++){
                     var appt = {};
+
                     appt._id = data[i]._id;
-                    if(data[i]._visitor){
-                        appt.visitor = data[i]._visitor;
+                    if(data[i]._visitor._id){       //Need first last name
+                        console.log("visitor "+i+": "+JSON.stringify(data[i]._visitor._id));
+
+                        appt.visitor = data[i]._visitor._id;
                     }
                     if(data[i]._start){
-                        appt.start = data[i]._start;
+                        //appt.start = data[i]._start;
+                        appt.start = moment(data[i]._start).format('lll');
+
                     }
                     if(data[i]._end){
-                        appt.end = data[i]._end;
+                        //appt.end = data[i]._end;
+                        appt.end = moment(data[i]._end).format('lll');
                     }
                     if(data[i]._status){
                         appt.status = data[i]._status;
@@ -39,6 +51,8 @@ angular.module("appointments", [])
         );
 
 
+
+
         $scope.submitCreate = function(){
             $scope.appointments.push({
                 visitor: $scope.visitor,
@@ -52,6 +66,8 @@ angular.module("appointments", [])
             $scope.status="";
             jQuery('#myModal').modal('hide');
         };
+
+
         $scope.newField = {};
         $scope.editing = false;
         $scope.displayedCollection = [].concat($scope.appointments);
