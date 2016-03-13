@@ -12,7 +12,6 @@
                 output#list
             #right.col-lg-6
                 h2 Your Company Info
-                br
                 h3 COMPANY NAME
                 input#companyName.inputBox(type='text', value="#{provider._domain}", disabled)
                 h3 LOGO
@@ -21,38 +20,20 @@
                 input#timezone.inputBox(type='text', ng-model="settings.timezone")
                 h3 SLACK
                 input#slack.inputBox(type='text', ng-model="settings.slack")
-                h3 PRIMARY COLOR
-                input.inputBox(type='text', ng-model="settings.theme.primaryColor")
-                h3 SECOND COLOR
-                input.inputBox(type='text', ng-model="settings.theme.secondaryColor")
-                h3 ACCENT COLOR
-                #accent-color-left
-                    p Choose custom accent colors for details on your check in app
-                #accent-color-right
-                    button#accent-color.btn.btn-info(type='button', data-toggle='modal', data-target='#colorModal')
-                        | CHOOSE ACCENT
+                h3 ACCENT COLORS
+                p Choose custom accent colors for details on your check in app
+                .row
+                    .col-lg-6
+                        h4 PRIMARY COLOR
+                        input.color.inputBox(type='text', ng-model="settings.theme.primaryColor")
+                    .col-lg-6
+                        h4 SECONDARY COLOR
+                        input.color.inputBox(type='text', ng-model="settings.theme.secondaryColor")
+                #buttonRow
+                    #settings-cancel
                         br
-                        | COLORS
-                #settings-cancel
-                    br
-                    button#cancel-button.btn.btn-default(type='button') CANCEL
-                #settings-submit
-                    br
-                    button#submit-button.btn.btn-info(type='button', ng-click="update()") SUBMIT
-    // Modal
-    #colorModal.modal.fade(role='dialog')
-        .modal-dialog(ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg'}")
-            // Modal content
-            .modal-content
-                .modal-header
-                    button.close(type='button', data-dismiss='modal') ×
-                    h4.modal-title ACCENT COLOR
-                .modal-body
-                    h3 Choose a primary color
-                    input.inputBox(type='text')
-                    h3 Choose a secondary color
-                    input.inputBox(type='text')
-                .modal-footer
-                    button.btn.btn-default(type='button', data-dismiss='modal') Cancel
-                    button.btn.btn-primary(type='submit', data-ng-disabled='modalForm.$invalid') OK
+                        button#cancel-button.btn.btn-default(type='button') CANCEL
+                    #settings-submit
+                        br
+                        button#submit-button.btn.btn-info(type='button', ng-click="update()") SUBMIT
 
