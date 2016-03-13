@@ -31,10 +31,10 @@ html(lang='en', ng-app="fourtifyApp")
     body
         // Navigation
         nav.navbar.navbar-default.navbar-static-top(role='navigation', style='margin-bottom: 0; z-index: 100')
-            a.navbar-brand(href='index.html') PROVIDER
+            a.navbar-brand(href='index.html') #{provider._domain}
             .username
                 a.dropdown-toggle(data-toggle='dropdown', href='#')
-                    | John Doe    
+                    | #{employee._name._first} #{employee._name._last}    
                     i.fa.fa-caret-down
                 ul.dropdown-menu.dropdown-user
                     li
@@ -48,28 +48,28 @@ html(lang='en', ng-app="fourtifyApp")
                 ul#side-menu.nav
                     li.first
                         // <div class="v-highlight"></div> USER LATER TO FIX BORDER HOVERING
-                        a(href='index.html')
+                        a(href, ui-sref="dashboard")
                             i.ion.ion-speedometer
-                            |  VISITORS QUEUE
+                            |  VISITOR QUEUE
 
                     li
                         a(href, ui-sref="appointments")
                             i.ion.ion-ios-people
                             |  APPOINTMENTS
                     li
-                        a(href="index.html")
+                        a(href, ui-sref="visitors")
                             i.ion.ion-ios-people
-                            |  VISITORS
+                            |  VISITOR HISTORY
                     li
                         a(href, ui-sref="employee")
                             i.ion.ion-person-stalker
                             |  EMPLOYEES
                     li
-                        a(href='index.html')
+                        a(href, ui-sref="forms")
                             i.ion.ion-ios-list-outline
                             |  FORMS
                     li
-                        a(href='index.html')
+                        a(href, ui-sref="settings")
                             i.ion.ion-ios-gear
                             |  SETTINGS
             // /.sidebar-collapse

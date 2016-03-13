@@ -6,18 +6,37 @@ angular.module("employee", [])
     .controller("EmployeeAllCtrl",[ "$scope", "EmployeeService", "$uibModal",
         function ($scope, $modal, EmployeeService, $uibModal) {
 
+            $scope.employeeList = [];
 
-            $scope.users =[{"name":"Natalie Portman"},{"name":"Ryan Gosling"},{"name":"Matt Damon"},{"name":"Will Ferrell"}];
+            $scope.createEmployee = function(){
+                $scope.employeeList.push({
+                    name: $scope.name,
+                    title: $scope.title,
+                    email: $scope.email,
+                    phoneNumber: $scope.phoneNumber,
+                });
+                $scope.name="";
+                $scope.title="";
+                $scope.email="";
+                $scope.phoneNumber="";
+                jQuery('#myModal').modal('hide');
+            };
+            $scope.newField = {};
+            $scope.editing = false;
+            $scope.displayedCollection = [].concat($scope.employeeList);
 
-            $scope.addNew = function(user){
-                $scope.users.push(user);
-                $scope.current = {};
+            $scope.editRowCollection = function(q) {
+                $scope.editing = $scope.employeeList.indexOf(q);
+                $scope.newField = angular.copy(q);
             };
 
-            $scope.current = {};
-
-
-    }])
+            /* This function allows employees to be removed from the Employees
+             dashboard inside fourtify-provider. */
+            $scope.removeEmployee = function(q) {
+                var indexOfEmployee =  findIndexOfObject($scope.employeeList, q);
+                $scope.employeeList.splice(indexOfEmployee, 1);
+            }
+        }])
 
     .service('EmployeeService', [
         '$http',
@@ -44,3 +63,15 @@ angular.module("employee", [])
             };
         }
     ]);
+
+    /* Finds the index of an object inside the array representing
+     the employee.
+     */
+    function findIndexOfObject(arrayToSearch, keyToFind) {
+        for (var i = 0; i < arrayToSearch.length; i++) {
+            if (arrayToSearch[i] == keyToFind) {
+                return i;
+            }
+        }
+        return null;
+    }

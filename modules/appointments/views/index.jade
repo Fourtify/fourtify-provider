@@ -5,9 +5,9 @@
             html
                 body
                     .row
-                        input.apptSearch.form-control.ng-isolate-scope(st-search='', placeholder='Search Visitors', type='text')
+                        input.apptSearch.form-control.ng-isolate-scope(st-search='', placeholder='Search Appointments', type='text')
                         button#newAppt.btn.btn-info(type='button', data-toggle='modal', data-target='#myModal') CREATE A NEW APPOINTMENT
-                        
+
         // Modal
         #myModal.modal.fade(role='dialog')
             .modal-dialog(ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg'}")
@@ -17,19 +17,16 @@
                         button.close(type='button', data-dismiss='modal') ×
                         h4.modal-title CREATE A NEW APPOINTMENT
                     .modal-body
-                        h4 FULL NAME
-                        input.inputBox.newApptInput(type='text', ng-model="name")
-                        h4 PROVIDER
-                        input.inputBox.newApptInput(type='text', ng-model="provider")
-                        h4 REASON FOR VISIT
-                        input.inputBox.newApptInput(type='text', ng-model="reason")
+                        h4 VISITOR
+                        input.inputBox.newApptInput(type='text', ng-model="visitor")
+                        h4 START
+                        input.inputBox.newApptInput(type='text', ng-model="start")
+                        h4 END
+                        input.inputBox.newApptInput(type='text', ng-model="end")
                         .row
                             .col-md-6
-                                h4 DATE
-                                input.inputBox.newApptDate(type='text', ng-model="date")
-                            .col-md-6
-                                h4 TIME
-                                input.inputBox.newApptTime(type='text', ng-model="time")
+                                h4 STATUS
+                                input.inputBox.newApptDate(type='text', ng-model="status")
                     .modal-footer
                         button.btn.btn-default(type='button', data-dismiss='modal') Cancel
                         button.btn.btn-primary(type='submit', ng-click="submitCreate()") Submit
@@ -41,37 +38,32 @@
                         table#dataTables-example.table.table-hover
                             thead
                                 tr
-                                    th NAME
-                                    th PROVIDER
-                                    th REASON FOR VISIT
-                                    th DATE
-                                    th TIME
+                                    th VISITOR
+                                    th START
+                                    th END
+                                    th STATUS
                                     th ACTION
                             tbody
-                                tr.odd.gradeX(ng-repeat="q in queue")
-                                    td(style='min-width:10em;max-width:10em;', data-ng-click='editMode = true; editRowCollection(q)')
+                                tr.odd.gradeX(ng-repeat="a in appointments")
+                                    td(style='min-width:10em;max-width:10em;', data-ng-click='editMode = true; editRowCollection(a)')
                                         .center(data-ng-hide='editMode')
-                                            span {{q.name}}
-                                        input.form-control.edit-input(name='name', type='text', data-ng-show='editMode', data-ng-model='q.name')
-                                    td(style='min-width:10em;max-width:10em;', data-ng-click='editMode = true; editRowCollection(q)')
+                                            span {{a.visitor}}
+                                        input.form-control.edit-input(name='name', type='text', data-ng-show='editMode', data-ng-model='a.visitor')
+                                    td(style='min-width:10em;max-width:10em;', data-ng-click='editMode = true; editRowCollection(a)')
                                         .center(data-ng-hide='editMode')
-                                            span {{q.provider}}
-                                        input.form-control.edit-input(name='name', type='text', data-ng-show='editMode', data-ng-model='q.provider')
-                                    td(style='min-width:10em;max-width:10em;', data-ng-click='editMode = true; editRowCollection(q)')
+                                            span {{a.start}}
+                                        input.form-control.edit-input(name='name', type='text', data-ng-show='editMode', data-ng-model='a.start')
+                                    td(style='min-width:10em;max-width:10em;', data-ng-click='editMode = true; editRowCollection(a)')
                                         .center(data-ng-hide='editMode')
-                                            span {{q.reason}}
-                                        input.form-control.edit-input(name='name', type='text', data-ng-show='editMode', data-ng-model='q.reason')
-                                    td(style='min-width:10em;max-width:10em;', data-ng-click='editMode = true; editRowCollection(q)')
+                                            span {{a.end}}
+                                        input.form-control.edit-input(name='name', type='text', data-ng-show='editMode', data-ng-model='a.end')
+                                    td(style='min-width:5em;max-width:5em;', data-ng-click='editMode = true; editRowCollection(a)')
                                         .center(data-ng-hide='editMode')
-                                            span {{q.date}}
-                                        input.form-control.edit-input(name='name', type='text', data-ng-show='editMode', data-ng-model='q.date')
-                                    td(style='min-width:10em;max-width:10em;', data-ng-click='editMode = true; editRowCollection(q)')
-                                        .center(data-ng-hide='editMode')
-                                            span {{q.time}}
-                                        input.form-control.edit-input(name='name', type='text', data-ng-show='editMode', data-ng-model='q.time')
+                                            span {{a.status}}
+                                        input.form-control.edit-input(name='name', type='text', data-ng-show='editMode', data-ng-model='a.status')
                                     td Check Out
                                     td
-                                        button.btn.col-md-5.btn-primary(type='submit', data-ng-show='editMode', data-ng-click='editMode=false; editRowCollection(q);')
+                                        button.btn.col-md-5.btn-primary(type='submit', data-ng-show='editMode', data-ng-click='editMode=false; editRowCollection(a);')
                                             i.glyphicon.glyphicon-ok-circle
-                                        button.btn.col-md-5.btn-default(type='button', data-ng-show='editMode', ng-click='cancel(q); editMode=false;')
+                                        button.btn.col-md-5.btn-default(type='button', data-ng-show='editMode', ng-click='cancelAppointment(a); editMode=false;')
                                             i.glyphicon.glyphicon-ban-circle
