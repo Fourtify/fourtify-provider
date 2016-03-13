@@ -1,5 +1,45 @@
-extends layout
-block content
-    //login page goes here
-    script.
-        window.redirectUrl = !{redirectUrl}
+doctype html(lang='en')
+head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(name='description', content='')
+    meta(name='author', content='')
+    title WELCOME
+    // Custom CSS
+    link(href='/css/login.css', rel='stylesheet')
+    // HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
+    // WARNING: Respond.js doesn't work if you view the page via file://
+    //if lt IE 9
+      script(src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
+      |         
+      script(src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
+    body(ng-app="authApp", ng-controller="AuthenticationCtrl")
+        span(ng-if="error", ng-cloak)
+            .alert.alert-dismissable.alert-danger.register-fail(style="color:red;")
+                button.close(data-dismiss='alert', type='button') &times;
+                p.
+                    {{error._code}}: {{error._msg}}
+        span(ng-if="processing", ng-cloak)
+            .alert.alert-dismissable.alert-info.register-info(style="color:green;")
+                button.close(data-dismiss='alert', type='button') &times;
+                p.
+                    Logging in...
+        .form
+            #login
+                form(ng-submit="login()")
+                    .field-wrap
+                        input(type='text', required='', placeholder='DOMAIN/COMPANY', autocomplete='off', ng-model="domain")
+                    .field-wrap
+                        input(type='email', placeholder='EMAIL', required='', autocomplete='off', ng-model="email")
+                    .field-wrap
+                        input(type='password', placeholder='PASSWORD', required='', autocomplete='off', ng-model="password")
+                    p.forgot
+                        a(href='#') Forgot Password?
+                    button.button.button-block Log In
+
+        script(type="text/javascript",src="/bower/angular/angular.min.js")
+        script(src='/pub/authentication/AuthenticationCtrl.js')
+        script.
+            window.redirectUrl = !{redirectUrl}
+

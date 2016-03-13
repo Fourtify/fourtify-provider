@@ -4,8 +4,6 @@ var moment = require('moment-timezone');
 var request = require('request');
 var config = require('../../../config/config.json')[environment];
 var API_URL = config.apiUrl;
-//@todo hard coded provider, will need to change later
-var SITE_AUTH_BASE64 = "NDE1ZTg1YzMxYjJmNDgyZmVhY2FjNzY4Y2IyMzdjZjU6YjQwZGQ0MWY0MTcyYzY2OTdiM2IzYWJkZTcwMWExYzc=";
 
 module.exports = class AuthMiddleware {
 

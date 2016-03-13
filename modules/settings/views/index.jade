@@ -6,7 +6,7 @@
     #container-fluid
         form#settings-form
             #left.col-lg-6
-                img.logo(src='pics/logo.png', alt='Company logo')
+                img.logo(ng-src="{{settings.logo}}", alt='Company logo')
                 button#select-a-file.btn.btn-info(type='button') SELECT A FILE
                 input#files(type='file', name='files[]', multiple='')
                 output#list
@@ -14,11 +14,17 @@
                 h2 Your Company Info
                 br
                 h3 COMPANY NAME
-                input#companyName.inputBox(type='text')
+                input#companyName.inputBox(type='text', value="#{provider._domain}", disabled)
+                h3 LOGO
+                input.inputBox(type='text', ng-model="settings.logo")
                 h3 TIMEZONE
-                input#timezone.inputBox(type='text')
+                input#timezone.inputBox(type='text', ng-model="settings.timezone")
                 h3 SLACK
-                input#slack.inputBox(type='text')
+                input#slack.inputBox(type='text', ng-model="settings.slack")
+                h3 PRIMARY COLOR
+                input.inputBox(type='text', ng-model="settings.theme.primaryColor")
+                h3 SECOND COLOR
+                input.inputBox(type='text', ng-model="settings.theme.secondaryColor")
                 h3 ACCENT COLOR
                 #accent-color-left
                     p Choose custom accent colors for details on your check in app
@@ -32,7 +38,7 @@
                     button#cancel-button.btn.btn-default(type='button') CANCEL
                 #settings-submit
                     br
-                    button#submit-button.btn.btn-info(type='button') SUBMIT
+                    button#submit-button.btn.btn-info(type='button', ng-click="update()") SUBMIT
     // Modal
     #colorModal.modal.fade(role='dialog')
         .modal-dialog(ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg'}")

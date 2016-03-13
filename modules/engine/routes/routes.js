@@ -5,7 +5,7 @@ var AuthMiddleware = require('../../authentication/src/AuthMiddleware');
 // =========================================================================
 // Menu - GET ============================================================
 // =========================================================================
-router.get('/', /*AuthMiddleware.authenticate(),*/ function(req, res) {
+router.get('/', AuthMiddleware.authenticate(), function(req, res) {
     res.render('layout');
 });
 
