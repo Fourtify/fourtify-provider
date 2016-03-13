@@ -29,10 +29,21 @@ angular.module("fourtifyApp",
                     $state.go('dashboard');
                 }
             })
-            /*.state('dashboard', {
+            .state('dashboard', {
                 url: "/dashboard",
                 templateUrl: "/templates/dashboard"
-            })*/
+                /*controller: "QueueAllCtrl",
+                resolve: {
+                    queue: function ($ocLazyLoad) {
+                        return $ocLazyLoad.load(
+                            {
+                                name: "queue",
+                                files: ["/pub/engine/QueueCtrl.js"]
+                            }
+                        );
+                    }
+                }*/
+            })
 
             // Employee
             .state('employee', {
@@ -62,6 +73,23 @@ angular.module("fourtifyApp",
                             {
                                 name: "appointments",
                                 files: ["/pub/appointments/ApptCtrl.js"]
+                            }
+                        );
+                    }
+                }
+            })
+
+            // Settings
+            .state('settings', {
+                url: "/settings",
+                templateUrl: "/templates/settings",
+                controller: "SettingsAllCtrl",
+                resolve: {
+                    staff: function ($ocLazyLoad) {
+                        return $ocLazyLoad.load(
+                            {
+                                name: "settings",
+                                files: ["/pub/settings/SettingsCtrl.js"]
                             }
                         );
                     }

@@ -1,0 +1,39 @@
+.container-fluid
+    .row
+        .col-lg-12
+            h1.page-header Settings
+        // /.col-lg-12
+    #container-fluid
+        form#settings-form
+            #left.col-lg-6
+                img.logo(ng-src="{{settings.logo}}", alt='Company logo')
+                button#select-a-file.btn.btn-info(type='button') SELECT A FILE
+                input#files(type='file', name='files[]', multiple='')
+                output#list
+            #right.col-lg-6
+                h2 Your Company Info
+                h3 COMPANY NAME
+                input#companyName.inputBox(type='text', value="#{provider._domain}", disabled)
+                h3 LOGO
+                input.inputBox(type='text', ng-model="settings.logo")
+                h3 TIMEZONE
+                input#timezone.inputBox(type='text', ng-model="settings.timezone")
+                h3 SLACK
+                input#slack.inputBox(type='text', ng-model="settings.slack")
+                h3 ACCENT COLORS
+                p Choose custom accent colors for details on your check in app
+                .row
+                    .col-lg-6
+                        h4 PRIMARY COLOR
+                        input.color.inputBox(type='text', ng-model="settings.theme.primaryColor")
+                    .col-lg-6
+                        h4 SECONDARY COLOR
+                        input.color.inputBox(type='text', ng-model="settings.theme.secondaryColor")
+                #buttonRow
+                    #settings-cancel
+                        br
+                        button#cancel-button.btn.btn-default(type='button') CANCEL
+                    #settings-submit
+                        br
+                        button#submit-button.btn.btn-info(type='button', ng-click="update()") SUBMIT
+
