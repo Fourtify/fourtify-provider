@@ -1,55 +1,88 @@
 angular.module("appointments", [])
 
     // =========================================================================
-    // Visitors Controllers ============================================================
+    // Appointments Controllers ============================================================
     // =========================================================================
-    .controller("ApptAllCtrl",[ "$scope", "VisitorsService", "$uibModal",
-        function ($scope, VisitorsService, $uibModal) {
+    .controller("ApptAllCtrl",[ "$scope", "AppointmentsService", "$uibModal",
+        function ($scope, AppointmentsService, $uibModal) {
 
+        $scope.appointments = [];
+        AppointmentsService.getAppointments(
+            {},
+            //success function
+            function(data) {
+                $scope.clearMessages();
+                for(var i = 0; i < data.length; i++){
+                    var appt = {};
+                    appt._id = data[i]._id;
+                    if(data[i]._visitor){
+                        appt.visitor = data[i]._visitor;
+                    }
+                    if(data[i]._start){
+                        appt.start = data[i]._start;
+                    }
+                    if(data[i]._end){
+                        appt.end = data[i]._end;
+                    }
+                    if(data[i]._status){
+                        appt.status = data[i]._status;
+                    }
+                    $scope.appointments.push(appt);
+                }
+            },
+            //error function
+            function(data, status) {
+                $scope.clearMessages();
+                $scope.err = data;
+            }
 
-        $scope.queue = [];
+        );
+
 
         $scope.submitCreate = function(){
-            $scope.queue.push({
-                name: $scope.name,
-                provider: $scope.provider,
-                reason: $scope.reason,
-                date: $scope.date,
-                time: $scope.time
+            $scope.appointments.push({
+                visitor: $scope.visitor,
+                start: $scope.start,
+                end: $scope.end,
+                status: $scope.status
             });
-            $scope.name="";
-            $scope.provider="";
-            $scope.reason="";
-            $scope.date="";
-            $scope.time="";
+            $scope.visitor="";
+            $scope.start="";
+            $scope.end="";
+            $scope.status="";
             jQuery('#myModal').modal('hide');
         };
         $scope.newField = {};
         $scope.editing = false;
-        $scope.displayedCollection = [].concat($scope.queue);
+        $scope.displayedCollection = [].concat($scope.appointments);
 
         $scope.editRowCollection = function(q) {
-            $scope.editing = $scope.queue.indexOf(q);
+            $scope.editing = $scope.appointments.indexOf(q);
             $scope.newField = angular.copy(q);
         };
 
         /* This function allows appointments to be removed from the Appointments
             dashboard inside fourtify-provider. */
         $scope.cancelAppointment = function(q) {
-            var indexOfAppointment =  findIndexOfObject($scope.queue, q);
-            $scope.queue.splice(indexOfAppointment, 1);
+            var indexOfAppointment =  findIndexOfObject($scope.appointments, q);
+            $scope.appointments.splice(indexOfAppointment, 1);
+        }
+
+        $scope.clearMessages = function(){
+            $scope.err = null;
+            $scope.pending = null;
+            $scope.success = null;
         }
     }])
 
-    .service('VisitorsService', [
+    .service('AppointmentsService', [
         '$http',
         function ($http, $rootScope, $window) {
             return {
-                //Groups API
-                getGroups: function(params, success, error) {
+                getAppointments: function(params, success, error) {
                     var req = {
                         method: 'GET',
-                        url: '/visitors',
+                        url: '/appointments',
                         params: params
                     };
                     this.apiCall(req, success, error);
