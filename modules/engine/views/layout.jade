@@ -31,10 +31,10 @@ html(lang='en', ng-app="fourtifyApp")
     body
         // Navigation
         nav.navbar.navbar-default.navbar-static-top(role='navigation', style='margin-bottom: 0; z-index: 100')
-            a.navbar-brand(href='index.html') PROVIDER
+            a.navbar-brand(href='index.html') #{provider._domain}
             .username
                 a.dropdown-toggle(data-toggle='dropdown', href='#')
-                    | John Doe    
+                    | #{employee._name._first} #{employee._name._last}    
                     i.fa.fa-caret-down
                 ul.dropdown-menu.dropdown-user
                     li
