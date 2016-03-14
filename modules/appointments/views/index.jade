@@ -25,7 +25,7 @@
                         h4 VISITOR
                         input.inputBox.newApptInput(type='text', ng-model="visitor")
                         h4 REASON
-                        input.inputBox.newApptInput(type='text', ng-model="status")
+                        input.inputBox.newApptInput(type='text', ng-model="reason")
                         h4 DATE/TIME
 
 
@@ -33,11 +33,11 @@
                         .row2
                             .row
                                 .col-sm-6
-                                    input#datetimepicker4.inputBox.newApptInput(type='text')
+                                    input#datetimepicker4.inputBox.newApptInput(type='text', ng-model="datepickerdata")
 
                                 script(type='text/javascript').
                                     $(function () {
-                                        $('#datetimepicker4').datetimepicker();
+                                        console.log("date picker: "+JSON.stringify($('#datetimepicker4').datetimepicker()));
                                     });
 
                         //.row
@@ -102,8 +102,8 @@
                                         input.form-control.edit-input(name='name', type='text', data-ng-show='editMode', data-ng-model='a.end')
                                     td(style='min-width:5em;max-width:5em; vertical-align:middle;')
                                         .center(data-ng-hide='editMode')
-                                            span {{a.status}}
-                                        input.form-control.edit-input(name='name', type='text', data-ng-show='editMode', data-ng-model='a.status')
+                                            span {{a.reason}}
+                                        input.form-control.edit-input(name='name', type='text', data-ng-show='editMode', data-ng-model='a.reason')
                                     td(style='min-width:5em;max-width:5em; vertical-align:middle;')
                                         .center(data-ng-hide='editMode')
 

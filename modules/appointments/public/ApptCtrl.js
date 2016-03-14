@@ -26,12 +26,10 @@ angular.module("appointments", [])
 
                         appt._id = data[i]._id;
                         if(data[i]._visitor._id){       //Need first last name
-                            console.log("visitor "+i+": "+JSON.stringify(data[i]._visitor._id));
                             appt.visitor = data[i]._visitor._id;
                         }
                         if(data[i]._start){
                             appt.start = moment(data[i]._start).format('lll');
-
                         }
                         if(data[i]._end){
                             appt.end = moment(data[i]._end).format('lll');
@@ -39,6 +37,7 @@ angular.module("appointments", [])
                         if(data[i]._reason){
                             appt.reason = data[i]._reason;
                         }
+                        console.log("reason "+i+": "+data[i]._reason);
                         if(data[i]._status){
                             appt.status = data[i]._status;
                         }
@@ -59,18 +58,24 @@ angular.module("appointments", [])
             $scope.submitCreate = function(){
 
 
+                //console.log("in datapicker:" +JSON.stringify($('#datetimepicker4').data("DateTimePicker").date()));
 
-                console.log("in submitCreate");
+                var startTime = moment($('#datetimepicker4').data("DateTimePicker").date())
+                var endTime = moment($('#datetimepicker4').data("DateTimePicker").date()).add(1, 'hours');      //End time 1 hour later by default
+
+                console.log("start:" +moment(startTime).format('lll'));
+                console.log("end :" +moment(endTime).format('lll'));
 
                 AppointmentsService.createAppointment(
                     {
-                        visitorId: $scope.visitor,
-                        start: $scope.start,
-                        end: $scope.end,
+                        visitor: $scope.visitor,
+                        start: startTime,
+                        end: endTime,
                         reason: $scope.reason
                     },
                     //success function
                     function(data) {
+                        console.log("in success:" +JSON.stringify($('#datetimepicker4').data("DateTimePicker").date()));
                         //$scope.clearMessages();
                         $scope.success = "YAY";
                     },
@@ -137,7 +142,7 @@ angular.module("appointments", [])
                     var req = {
                         method: 'POST',
                         url: '/appointments',
-                        params: params
+                        data: params
                     };
                     this.apiCall(req, success, error);
                 },
