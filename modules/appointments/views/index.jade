@@ -63,7 +63,8 @@
                                         input.form-control.edit-input(name='name', type='text', data-ng-show='editMode', data-ng-model='a.status')
                                     td Check Out
                                     td
-                                        button.btn.col-md-5.btn-primary(type='submit', data-ng-show='editMode', data-ng-click='editMode=false; editRowCollection(a);')
-                                            i.glyphicon.glyphicon-ok-circle
-                                        button.btn.col-md-5.btn-default(type='button', data-ng-show='editMode', ng-click='cancelAppointment(a); editMode=false;')
-                                            i.glyphicon.glyphicon-ban-circle
+                                        button.btn.col-md-5.btn-danger(type='button', data-ng-show='editMode', ng-click='cancelAppointment(a); editMode=false;')
+                                            i.glyphicon.glyphicon-trash
+                                        button.btn.col-md-5.btn-success(type='submit', data-ng-show='editMode', data-ng-click='editMode=false; editRowCollection(a);')
+                                            i.glyphicon.glyphicon-ok
+
