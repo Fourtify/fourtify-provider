@@ -6,7 +6,7 @@
                 body
                     .row
                         input.apptSearch.form-control.ng-isolate-scope(st-search='', placeholder='Search Appointments', type='text')
-                        button#newAppt.btn.btn-info(type='button', data-toggle='modal', data-target='#myModal') CREATE A NEW APPOINTMENT
+                        button#newAppt.btn.btn-info(type='button', data-toggle='modal', data-target='#myModal') CREATE AN APPOINTMENT
 
         // Modal
         #myModal.modal.fade(role='dialog')
@@ -45,26 +45,37 @@
                                     th ACTION
                             tbody
                                 tr.odd.gradeX(ng-repeat="a in appointments")
-                                    td(style='min-width:10em;max-width:10em;', data-ng-click='editMode = true; editRowCollection(a)')
+                                    td(style='min-width:6em;max-width:10em; vertical-align:middle;')
                                         .center(data-ng-hide='editMode')
                                             span {{a.visitor}}
                                         input.form-control.edit-input(name='name', type='text', data-ng-show='editMode', data-ng-model='a.visitor')
-                                    td(style='min-width:10em;max-width:10em;', data-ng-click='editMode = true; editRowCollection(a)')
+                                    td(style='min-width:10em;max-width:10em; vertical-align:middle;')
                                         .center(data-ng-hide='editMode')
                                             span {{a.start}}
                                         input.form-control.edit-input(name='name', type='text', data-ng-show='editMode', data-ng-model='a.start')
-                                    td(style='min-width:10em;max-width:10em;', data-ng-click='editMode = true; editRowCollection(a)')
+                                    td(style='min-width:10em;max-width:10em; vertical-align:middle;')
                                         .center(data-ng-hide='editMode')
                                             span {{a.end}}
                                         input.form-control.edit-input(name='name', type='text', data-ng-show='editMode', data-ng-model='a.end')
-                                    td(style='min-width:5em;max-width:5em;', data-ng-click='editMode = true; editRowCollection(a)')
+                                    td(style='min-width:5em;max-width:5em; vertical-align:middle;')
                                         .center(data-ng-hide='editMode')
                                             span {{a.status}}
                                         input.form-control.edit-input(name='name', type='text', data-ng-show='editMode', data-ng-model='a.status')
-                                    td Check Out
-                                    td
-                                        button.btn.col-md-5.btn-danger(type='button', data-ng-show='editMode', ng-click='cancelAppointment(a); editMode=false;')
+                                    td(style='min-width:5em;max-width:5em; vertical-align:middle;')
+                                        .center(data-ng-hide='editMode')
+
+                                        button.btn.btn-danger.btn-sm(type='button', ng-click='cancelAppointment(a); ', data-toggle='tooltip', data-placement='top', title='Remove Appointment')
                                             i.glyphicon.glyphicon-trash
-                                        button.btn.col-md-5.btn-success(type='submit', data-ng-show='editMode', data-ng-click='editMode=false; editRowCollection(a);')
+                                        button.btn.btn-warning.btn-sm(type='button', data-ng-hide='editMode', data-ng-click='editMode=true;', data-toggle='tooltip', data-placement='top', title='Edit Appointment')
+                                            i.glyphicon.glyphicon-pencil
+                                        button.btn.btn-success.btn-sm(type='button', data-ng-show='editMode', data-ng-click='editMode=false; editRowCollection(a);', data-toggle='tooltip', data-placement='top', title='Save Changes')
+                                            i.glyphicon.glyphicon-ok
+
+
+                                    //td Check Out
+                                    //td
+                                        button.btn.col-md-5.btn-danger(type='button', data-ng-show='editMode', ng-click='cancelAppointment(a); editMode=false;', data-toggle='tooltip', data-placement='top', title='Remove Appointment')
+                                            i.glyphicon.glyphicon-trash
+                                        button.btn.col-md-5.btn-success(type='submit', data-ng-show='editMode', data-ng-click='editMode=false; editRowCollection(a);', data-toggle='tooltip', data-placement='top', title='Save Changes')
                                             i.glyphicon.glyphicon-ok
 

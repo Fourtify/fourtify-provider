@@ -1,0 +1,7 @@
+.table td {
+    text-align: center;
+}
+
+.table > tbody > tr > td > span{
+    vertical-align: middle;
+}
