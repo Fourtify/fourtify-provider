@@ -7,9 +7,17 @@ angular.module("appointments", [])
     .controller("ApptAllCtrl",[ "$scope", "AppointmentsService", "$uibModal",
         function ($scope, AppointmentsService, $uibModal) {
 
+            $scope.indexToRemove;
             $scope.appointments = [];
-            //$('#sandbox-container .input-daterange').datepicker({});
-            //$('.datepicker').datepicker();
+
+            /**
+             * Clear create modal on close
+             */
+            $('#createApptModal').on('hidden.bs.modal', function (e) {
+                $('#datetimepicker4').val("");
+                $('#visitorInput').val("");
+                $('#reasonInput').val("");
+            });
 
             /**
              * Initial call to retrieve appointments as UI loads
@@ -102,19 +110,19 @@ angular.module("appointments", [])
             };
 
 
-            $scope.submitDelete = function(q){
+            $scope.submitDelete = function(){
 
-                console.log("in delete :" +q);
+                console.log("in delete :" +$scope.indexToRemove);
 
                 AppointmentsService.deleteAppointment(
                     {
-                        appointmentId: q
+                        appointmentId: $scope.indexToRemove
                     },
                     //success function
                     function(data) {
                         //console.log("in success:" +JSON.stringify($('#datetimepicker4').data("DateTimePicker").date()));
                         //$scope.clearMessages();
-                        var indexOfAppointment =  findIndexOfObject($scope.appointments, q);
+                        var indexOfAppointment =  findIndexOfObject($scope.appointments, $scope.indexToRemove);
                         $scope.appointments.splice(indexOfAppointment, 1);
                         $scope.success = "YAY";
                     },
@@ -139,9 +147,13 @@ angular.module("appointments", [])
 
             /* This function allows appointments to be removed from the Appointments
              dashboard inside fourtify-provider. */
-            $scope.cancelAppointment = function(q) {
+            /*$scope.cancelAppointment = function(q) {
                 var indexOfAppointment =  findIndexOfObject($scope.appointments, q);
                 $scope.appointments.splice(indexOfAppointment, 1);
+            }*/
+
+            $scope.setIdToRemove = function(q) {
+                $scope.indexToRemove = q;
             }
 
             $scope.clearMessages = function(){
