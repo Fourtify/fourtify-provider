@@ -180,8 +180,10 @@
 }
 
 .inputBox {
-    width:350px;
+    width:100%;
     height:39px;
+    /*margin:0px auto;
+    display:block;*/
 }
 
 /* appointments*/
@@ -219,7 +221,7 @@
 }
 
 .newApptInput {
-    width:370px;
+    /*width:370px;*/
     height:35px;
     border: 1px solid lightgrey;
     border-radius: 3px;

@@ -5,3 +5,8 @@
 .table > tbody > tr > td > span{
     vertical-align: middle;
 }
+
+.dropdown-menu {
+    left: auto;
+    /* right: 15px; */
+}

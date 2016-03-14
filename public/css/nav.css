@@ -59,7 +59,7 @@ html, body {
 
 .dropdown-menu {
     left: auto;
-    right: 15px;
+    /*right: 15px;*/
 }
 
 .username a{

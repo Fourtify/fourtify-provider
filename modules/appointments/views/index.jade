@@ -1,3 +1,5 @@
+
+
 .container-fluid
     .row
         .col-lg-12
@@ -8,6 +10,8 @@
                         input.apptSearch.form-control.ng-isolate-scope(st-search='', placeholder='Search Appointments', type='text')
                         button#newAppt.btn.btn-info(type='button', data-toggle='modal', data-target='#myModal') CREATE AN APPOINTMENT
 
+
+
         // Modal
         #myModal.modal.fade(role='dialog')
             .modal-dialog(ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg'}")
@@ -17,16 +21,55 @@
                         button.close(type='button', data-dismiss='modal') ×
                         h4.modal-title CREATE A NEW APPOINTMENT
                     .modal-body
+
                         h4 VISITOR
                         input.inputBox.newApptInput(type='text', ng-model="visitor")
-                        h4 START
-                        input.inputBox.newApptInput(type='text', ng-model="start")
-                        h4 END
-                        input.inputBox.newApptInput(type='text', ng-model="end")
-                        .row
-                            .col-md-6
-                                h4 STATUS
-                                input.inputBox.newApptDate(type='text', ng-model="status")
+                        h4 REASON
+                        input.inputBox.newApptInput(type='text', ng-model="status")
+                        h4 DATE/TIME
+
+
+
+                        .row2
+                            .row
+                                .col-sm-6
+                                    input#datetimepicker4.inputBox.newApptInput(type='text')
+
+                                script(type='text/javascript').
+                                    $(function () {
+                                        $('#datetimepicker4').datetimepicker();
+                                    });
+
+                        //.row
+                            .col-sm-12
+                                .row
+                                    .col-xs-5.col-md-5
+                                        h4 START
+                                    .col-xs-2.col-md-2(style='text-align:center;')
+                                        //blank holder
+                                    .col-xs-5.col-md-5
+                                        h4 END
+
+
+
+
+                                        //.container
+                                            .row
+                                                .col-sm-6
+                                                    input#datetimepicker4.form-control(type='text')
+
+                                                script(type='text/javascript').
+                                                    $(function () {
+                                                        $('#datetimepicker4').datetimepicker();
+                                                    });
+
+                                        //input.inputBox.newApptInput(date-provider='datetimepicker')
+                                    .col-xs-6.col-md-2(style='text-align:center;')
+                                        h4 TO
+                                    .col-xs-6.col-md-5
+                                        //input.inputBox.newApptInput(data-provide='datepicker')
+
+
                     .modal-footer
                         button.btn.btn-default(type='button', data-dismiss='modal') Cancel
                         button.btn.btn-primary(type='submit', ng-click="submitCreate()") Submit
@@ -41,7 +84,7 @@
                                     th VISITOR
                                     th START
                                     th END
-                                    th STATUS
+                                    th REASON
                                     th ACTION
                             tbody
                                 tr.odd.gradeX(ng-repeat="a in appointments")
@@ -69,13 +112,5 @@
                                         button.btn.btn-warning.btn-sm(type='button', data-ng-hide='editMode', data-ng-click='editMode=true;', data-toggle='tooltip', data-placement='top', title='Edit Appointment')
                                             i.glyphicon.glyphicon-pencil
                                         button.btn.btn-success.btn-sm(type='button', data-ng-show='editMode', data-ng-click='editMode=false; editRowCollection(a);', data-toggle='tooltip', data-placement='top', title='Save Changes')
-                                            i.glyphicon.glyphicon-ok
-
-
-                                    //td Check Out
-                                    //td
-                                        button.btn.col-md-5.btn-danger(type='button', data-ng-show='editMode', ng-click='cancelAppointment(a); editMode=false;', data-toggle='tooltip', data-placement='top', title='Remove Appointment')
-                                            i.glyphicon.glyphicon-trash
-                                        button.btn.col-md-5.btn-success(type='submit', data-ng-show='editMode', data-ng-click='editMode=false; editRowCollection(a);', data-toggle='tooltip', data-placement='top', title='Save Changes')
                                             i.glyphicon.glyphicon-ok
 

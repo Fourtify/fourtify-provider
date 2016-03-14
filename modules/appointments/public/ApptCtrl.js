@@ -7,89 +7,119 @@ angular.module("appointments", [])
     .controller("ApptAllCtrl",[ "$scope", "AppointmentsService", "$uibModal",
         function ($scope, AppointmentsService, $uibModal) {
 
-        $scope.appointments = [];
+            $scope.appointments = [];
+            //$('#sandbox-container .input-daterange').datepicker({});
+            //$('.datepicker').datepicker();
 
+            /**
+             * Initial call to retrieve appointments as UI loads
+             *
+             */
+            AppointmentsService.getAppointments(
+                {},
+                //success function
+                function(data) {
+                    $scope.clearMessages();
+                    //console.log("data "+i+": "+JSON.stringify(data));
+                    for(var i = 0; i < data.length; i++){
+                        var appt = {};
 
-            //moment().format(lll);
+                        appt._id = data[i]._id;
+                        if(data[i]._visitor._id){       //Need first last name
+                            console.log("visitor "+i+": "+JSON.stringify(data[i]._visitor._id));
+                            appt.visitor = data[i]._visitor._id;
+                        }
+                        if(data[i]._start){
+                            appt.start = moment(data[i]._start).format('lll');
 
-        AppointmentsService.getAppointments(
-            {},
-            //success function
-            function(data) {
-                $scope.clearMessages();
-                console.log("data "+i+": "+JSON.stringify(data));
-                for(var i = 0; i < data.length; i++){
-                    var appt = {};
-
-                    appt._id = data[i]._id;
-                    if(data[i]._visitor._id){       //Need first last name
-                        console.log("visitor "+i+": "+JSON.stringify(data[i]._visitor._id));
-
-                        appt.visitor = data[i]._visitor._id;
+                        }
+                        if(data[i]._end){
+                            appt.end = moment(data[i]._end).format('lll');
+                        }
+                        if(data[i]._reason){
+                            appt.reason = data[i]._reason;
+                        }
+                        if(data[i]._status){
+                            appt.status = data[i]._status;
+                        }
+                        $scope.appointments.push(appt);
                     }
-                    if(data[i]._start){
-                        //appt.start = data[i]._start;
-                        appt.start = moment(data[i]._start).format('lll');
-
-                    }
-                    if(data[i]._end){
-                        //appt.end = data[i]._end;
-                        appt.end = moment(data[i]._end).format('lll');
-                    }
-                    if(data[i]._status){
-                        appt.status = data[i]._status;
-                    }
-                    $scope.appointments.push(appt);
+                },
+                //error function
+                function (data, status) {
+                    $scope.clearMessages();
+                    $scope.err = data;
                 }
-            },
-            //error function
-            function(data, status) {
-                $scope.clearMessages();
-                $scope.err = data;
+            );
+
+
+            /**
+             * Scope function to be called to add/create appointment and add it to database
+             */
+            $scope.submitCreate = function(){
+
+
+
+                console.log("in submitCreate");
+
+                AppointmentsService.createAppointment(
+                    {
+                        visitorId: $scope.visitor,
+                        start: $scope.start,
+                        end: $scope.end,
+                        reason: $scope.reason
+                    },
+                    //success function
+                    function(data) {
+                        //$scope.clearMessages();
+                        $scope.success = "YAY";
+                    },
+                    //error function
+                    function(data, status) {
+                        //$scope.clearMessages();
+                        $scope.err = data;
+                    }
+                );
+
+                /* //old code
+                $scope.appointments.push({
+                    visitor: $scope.visitor,
+                    start: $scope.start,
+                    end: $scope.end,
+                    status: $scope.status
+                });
+                $scope.visitor="";
+                $scope.start="";
+                $scope.end="";
+                $scope.status="";
+                jQuery('#myModal').modal('hide');
+                */
+            };
+
+
+            $scope.newField = {};
+            $scope.editing = false;
+            $scope.displayedCollection = [].concat($scope.appointments);
+
+            $scope.editRowCollection = function(q) {
+                $scope.editing = $scope.appointments.indexOf(q);
+                $scope.newField = angular.copy(q);
+            };
+
+
+            /* This function allows appointments to be removed from the Appointments
+             dashboard inside fourtify-provider. */
+            $scope.cancelAppointment = function(q) {
+                var indexOfAppointment =  findIndexOfObject($scope.appointments, q);
+                $scope.appointments.splice(indexOfAppointment, 1);
             }
 
-        );
-
-
-
-
-        $scope.submitCreate = function(){
-            $scope.appointments.push({
-                visitor: $scope.visitor,
-                start: $scope.start,
-                end: $scope.end,
-                status: $scope.status
-            });
-            $scope.visitor="";
-            $scope.start="";
-            $scope.end="";
-            $scope.status="";
-            jQuery('#myModal').modal('hide');
-        };
-
-
-        $scope.newField = {};
-        $scope.editing = false;
-        $scope.displayedCollection = [].concat($scope.appointments);
-
-        $scope.editRowCollection = function(q) {
-            $scope.editing = $scope.appointments.indexOf(q);
-            $scope.newField = angular.copy(q);
-        };
-
-        /* This function allows appointments to be removed from the Appointments
-            dashboard inside fourtify-provider. */
-        $scope.cancelAppointment = function(q) {
-            var indexOfAppointment =  findIndexOfObject($scope.appointments, q);
-            $scope.appointments.splice(indexOfAppointment, 1);
-        }
-
-        $scope.clearMessages = function(){
-            $scope.err = null;
-            $scope.pending = null;
-            $scope.success = null;
-        }
-    }])
+            $scope.clearMessages = function(){
+                $scope.err = null;
+                $scope.pending = null;
+                $scope.success = null;
+            }
+        }])
 
     .service('AppointmentsService', [
         '$http',
@@ -98,6 +128,14 @@ angular.module("appointments", [])
                 getAppointments: function(params, success, error) {
                     var req = {
                         method: 'GET',
+                        url: '/appointments',
+                        params: params
+                    };
+                    this.apiCall(req, success, error);
+                },
+                createAppointment: function(params, success, error) {
+                    var req = {
+                        method: 'POST',
                         url: '/appointments',
                         params: params
                     };
@@ -116,14 +154,15 @@ angular.module("appointments", [])
         }
     ]);
 
-    /* Finds the index of an object inside the array representing
-       the appointments.
-     */
-    function findIndexOfObject(arrayToSearch, keyToFind) {
-        for (var i = 0; i < arrayToSearch.length; i++) {
-            if (arrayToSearch[i] == keyToFind) {
-                return i;
-            }
+/* Finds the index of an object inside the array representing
+ the appointments.
+ */
+function findIndexOfObject(arrayToSearch, keyToFind) {
+    for (var i = 0; i < arrayToSearch.length; i++) {
+        if (arrayToSearch[i] == keyToFind) {
+            return i;
         }
-        return null;
     }
+    return null;
+}
+

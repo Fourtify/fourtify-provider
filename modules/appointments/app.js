@@ -9,3 +9,4 @@ app.use('/pub/appointments', express.static(path.join(__dirname, 'public')));
 app.use('/templates/appointments', require('./routes/templateRoutes.js'));
 
 module.exports = app;
+
