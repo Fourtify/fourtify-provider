@@ -24,7 +24,7 @@ angular.module("appointments", [])
                     for(var i = 0; i < data.length; i++){
                         var appt = {};
 
-                        appt._id = data[i]._id;
+                        appt.id = data[i]._id;
                         if(data[i]._visitor._id){       //Need first last name
                             appt.visitor = data[i]._visitor._id;
                         }
@@ -102,6 +102,31 @@ angular.module("appointments", [])
             };
 
 
+            $scope.submitDelete = function(q){
+
+                console.log("in delete :" +q);
+
+                AppointmentsService.deleteAppointment(
+                    {
+                        appointmentId: q
+                    },
+                    //success function
+                    function(data) {
+                        //console.log("in success:" +JSON.stringify($('#datetimepicker4').data("DateTimePicker").date()));
+                        //$scope.clearMessages();
+                        var indexOfAppointment =  findIndexOfObject($scope.appointments, q);
+                        $scope.appointments.splice(indexOfAppointment, 1);
+                        $scope.success = "YAY";
+                    },
+                    //error function
+                    function(data, status) {
+                        //$scope.clearMessages();
+                        $scope.err = data;
+                    }
+                );
+
+            };
+
             $scope.newField = {};
             $scope.editing = false;
             $scope.displayedCollection = [].concat($scope.appointments);
@@ -143,6 +168,14 @@ angular.module("appointments", [])
                         method: 'POST',
                         url: '/appointments',
                         data: params
+                    };
+                    this.apiCall(req, success, error);
+                },
+                deleteAppointment: function(params, success, error) {
+                    var req = {
+                        method: 'DELETE',
+                        url: '/appointments/'+params.appointmentId,
+                        params: params
                     };
                     this.apiCall(req, success, error);
                 },

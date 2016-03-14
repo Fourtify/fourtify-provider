@@ -107,7 +107,7 @@
                                     td(style='min-width:5em;max-width:5em; vertical-align:middle;')
                                         .center(data-ng-hide='editMode')
 
-                                        button.btn.btn-danger.btn-sm(type='button', ng-click='cancelAppointment(a); ', data-toggle='tooltip', data-placement='top', title='Remove Appointment')
+                                        button.btn.btn-danger.btn-sm(type='button', ng-click='submitDelete(a.id); ', data-toggle='tooltip', data-placement='top', title='Remove Appointment')
                                             i.glyphicon.glyphicon-trash
                                         button.btn.btn-warning.btn-sm(type='button', data-ng-hide='editMode', data-ng-click='editMode=true;', data-toggle='tooltip', data-placement='top', title='Edit Appointment')
                                             i.glyphicon.glyphicon-pencil
