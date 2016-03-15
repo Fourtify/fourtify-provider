@@ -1,4 +1,4 @@
-angular.module("authenticationApp", [])
+angular.module("authApp", [])
 
     // =========================================================================
     // Main Controllers ============================================================
@@ -6,13 +6,13 @@ angular.module("authenticationApp", [])
     .controller("AuthenticationCtrl", function ($scope, $window, AuthenticationService) {
 
         $scope.redirectUrl = window.redirectUrl || "/dashboard";
-        console.log($scope.redirectUrl);
 
         $scope.login = function(){
             $scope.error = null;
             $scope.processing = true;
             AuthenticationService.login(
                 {
+                    "domain": $scope.domain,
                     "email": $scope.email,
                     "password": $scope.password
                 },

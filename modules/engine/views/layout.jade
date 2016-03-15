@@ -23,6 +23,9 @@ html(lang='en', ng-app="fourtifyApp")
         link(href='/bower/font-awesome/css/font-awesome.min.css', rel='stylesheet', type='text/css')
         link(href='/css/ionicons.css', rel='stylesheet', type='text/css')
         link(src='https://www.google.com/fonts#UsePlace:use/Collection:Open+Sans')
+
+        link(href='/bower/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css', rel='stylesheet')
+
         // HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
         // WARNING: Respond.js doesn't work if you view the page via file://
         //if lt IE 9
@@ -31,14 +34,14 @@ html(lang='en', ng-app="fourtifyApp")
     body
         // Navigation
         nav.navbar.navbar-default.navbar-static-top(role='navigation', style='margin-bottom: 0; z-index: 100')
-            a.navbar-brand(href='index.html') PROVIDER
+            a.navbar-brand(href='index.html') #{provider._domain}
             .username
                 a.dropdown-toggle(data-toggle='dropdown', href='#')
-                    | John Doe    
+                    | #{employee._name._first} #{employee._name._last}    
                     i.fa.fa-caret-down
                 ul.dropdown-menu.dropdown-user
                     li
-                        a(href='login.html')
+                        a(href='/logout')
                             i.ion.ion-log-out
                             |  Logout
             // /.dropdown-user
@@ -85,15 +88,23 @@ html(lang='en', ng-app="fourtifyApp")
         script(src='/bower/metisMenu/dist/metisMenu.min.js')
         // Morris Charts JavaScript
         script(src='/bower/raphael/raphael-min.js')
+
         //script(src='/bower/morrisjs/morris.min.js')
         //script(src='/js/morris-data.js')
         // Custom Theme JavaScript
         script(src='/js/sb-admin-2.js')
+
         script(type="text/javascript",src="/bower/angular/angular.min.js")
         script(type="text/javascript",src="/bower/ocLazyLoad/dist/ocLazyLoad.min.js")
         script(type="text/javascript",src="/bower/angular-bootstrap/ui-bootstrap.min.js")
+        script(type="text/javascript",src="/bower/moment/min/moment-with-locales.min.js")
         script(type="text/javascript",src="/bower/ng-file-upload/ng-file-upload.min.js")
         script(type="text/javascript",src="/bower/angular-loading-bar/src/loading-bar.js")
         script(type="text/javascript",src="/bower/angular-ui-router/release/angular-ui-router.min.js")
         script(type="text/javascript",src="/bower/angular-local-storage/dist/angular-local-storage.min.js")
-        script(type="text/javascript", src="/js/angular-app.js")
+        script(type="text/javascript",src="/js/angular-app.js")
+        script(type='text/javascript',src="/bower/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js")
+
+
+
+

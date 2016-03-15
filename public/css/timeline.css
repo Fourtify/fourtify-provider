@@ -179,12 +179,15 @@
     }
 }
 
+.inputBox {
+    width:100%;
+    height:39px;
+    /*margin:0px auto;
+    display:block;*/
+}
+
 /* appointments*/
 
-#date {
-    float:left;
-    font-size:12px;
-}
 #newAppt {
     margin-bottom: 10px;
     margin-right: 15px;
@@ -218,7 +221,7 @@
 }
 
 .newApptInput {
-    width:370px;
+    /*width:370px;*/
     height:35px;
     border: 1px solid lightgrey;
     border-radius: 3px;
@@ -254,34 +257,27 @@ h1{
     width:400px;
 }
 #right h2 {
+    color: #808080;
     font-size: 20px;
+    padding-bottom: 15px;
 }
 #right h3 {
     color: #808080;
     font-size: 14px;
 }
+#right h4 {
+    color: #808080;
+    font-size: 12px;
+}
 #right p {
     color: #808080;
     font-size: 14px;
 }
-.inputBox {
-    width:350px;
-    height:39px;
+
+#settings-form .color {
+    width:150px;
 }
 
-#accent-color {
-    width:150px;
-    height:45px;
-    font-size: 12px;
-}
-#accent-color-left {
-    width:180px;
-    float:left;
-    vertical-align: center;
-}
-#accent-color-right {
-    margin-left:200px;
-}
 #settings-cancel {
     width:210px;
     float:left;
@@ -289,24 +285,14 @@ h1{
     margin-bottom: 100px;
 }
 #settings-submit {
-    margin-left:100px;
-    margin-top:25px;
+    margin-left:220px;
+    margin-right: 20px;
     margin-bottom: 100px;
-}
-#submit-button {
-    margin-left: 20px;
-    height:45px;
-    width:120px;
-}
-#cancel-button {
-    height:45px;
-    width:120px;
-}
-.modal-body h3 {
-    color: #808080;
-    font-size: 14px;
-}
 
+}
+#buttonRow {
+    float: right;
+}
 #container-fluid {
     margin: 0 auto;
 }
