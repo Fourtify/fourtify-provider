@@ -33,7 +33,7 @@ module.exports = class AuthMiddleware {
                     request(
                         {
                             headers: {
-                                "Authorization": "Basic "+SITE_AUTH_BASE64,
+                                "Authorization": "Basic "+(new Buffer(req.provider._clientId+":"+req.provider._clientSecret).toString('base64')),
                                 "Content-Type": "application/x-www-form-urlencoded"
                             },
                             method: "POST",
@@ -99,7 +99,7 @@ module.exports = class AuthMiddleware {
                     request(
                         {
                             headers: {
-                                "Authorization": "Basic "+SITE_AUTH_BASE64,
+                                "Authorization": "Basic "+(new Buffer(req.provider._clientId+":"+req.provider._clientSecret).toString('base64')),
                                 "Content-Type": "application/x-www-form-urlencoded"
                             },
                             method: "POST",

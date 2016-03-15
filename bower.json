@@ -51,6 +51,7 @@
     "async": "~1.4.2",
     "bootstrap": "~3.3.6",
     "components-font-awesome": "~4.5.0",
+    "eonasdan-bootstrap-datetimepicker": "~4.17.37",
     "jquery": "~2.1.4",
     "jquery-ui": "~1.11.4",
     "jquery-migrate": "~1.2.1",
