@@ -83,13 +83,13 @@ angular.module("fourtifyApp",
             .state('appointments', {
                 url: "/appointments",
                 templateUrl: "/templates/appointments",
-                controller: "ApptAllCtrl",
+                controller: "AppointmentsAllCtrl",
                 resolve: {
-                    staff: function ($ocLazyLoad) {
+                    appointments: function ($ocLazyLoad) {
                         return $ocLazyLoad.load(
                             {
                                 name: "appointments",
-                                files: ["/pub/appointments/ApptCtrl.js"]
+                                files: ["/pub/appointments/AppointmentsCtrl.js"]
                             }
                         );
                     }

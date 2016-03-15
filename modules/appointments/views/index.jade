@@ -5,10 +5,9 @@
             html
                 body
                     .row
-                        //input.apptSearch.form-control.ng-isolate-scope(st-search='', placeholder='Search Appointments', type='text')
-                        button#newAppt.btn.btn-info(type='button', data-toggle='modal', data-target='#createApptModal') CREATE AN APPOINTMENT
+                        button#newAppt.btn.btn-info(type='button', ng-click="create()") CREATE
         // Modal
-        #createApptModal.modal.fade(role='dialog')
+        //#createApptModal.modal.fade(role='dialog')
             .modal-dialog(ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg'}")
                 // Modal content
                 .modal-content
@@ -40,6 +39,19 @@
                         button.btn.btn-primary(type='submit', ng-click="submitCreate()") Submit
         .row
             .col-lg-12
+                .alert.alert-dismissable.alert-danger.register-fail(ng-if="err", ng-cloak)
+                    button.close(data-dismiss='alert', type='button') &times;
+                    p.
+                        {{err._code}}: {{err._msg}}
+                .alert.alert-dismissable.alert-success(ng-if="success", ng-cloak)
+                    button.close(data-dismiss='alert', type='button') &times;
+                    p.
+                        {{success._msg}}
+                .alert.alert-dismissable.alert-info(ng-if="pending", ng-cloak)
+                    button.close(data-dismiss='alert', type='button') &times;
+                    p.
+                        {{pending._msg}}
+            .col-lg-12
                 .panel-body
                     .dataTable_wrapper
                         table#dataTables-example.table.table-hover
@@ -49,36 +61,33 @@
                                     th START
                                     th END
                                     th REASON
-                                    th ACTION
+                                    th STATUS
+                                    th ACTIONS
                             tbody
                                 tr.odd.gradeX(ng-repeat="a in appointments")
                                     td(style='min-width:6em;max-width:10em; vertical-align:middle;')
-                                        .center(data-ng-hide='editMode')
-                                            span {{a.visitor}}
-                                        input.form-control.edit-input(name='name', type='text', data-ng-show='editMode', data-ng-model='a.visitor')
+                                        .center
+                                            span {{a._visitor._name._first}} {{a._visitor._name._last}}
                                     td(style='min-width:10em;max-width:10em; vertical-align:middle;')
-                                        .center(data-ng-hide='editMode')
-                                            span {{a.start}}
-                                        input.form-control.edit-input(name='name', type='text', data-ng-show='editMode', data-ng-model='a.start')
+                                        .center
+                                            span {{a._start}}
                                     td(style='min-width:10em;max-width:10em; vertical-align:middle;')
-                                        .center(data-ng-hide='editMode')
-                                            span {{a.end}}
-                                        input.form-control.edit-input(name='name', type='text', data-ng-show='editMode', data-ng-model='a.end')
+                                        .center
+                                            span {{a._end}}
                                     td(style='min-width:5em;max-width:5em; vertical-align:middle;')
-                                        .center(data-ng-hide='editMode')
-                                            span {{a.reason}}
-                                        input.form-control.edit-input(name='name', type='text', data-ng-show='editMode', data-ng-model='a.reason')
+                                        .center
+                                            span {{a._reason}}
                                     td(style='min-width:5em;max-width:5em; vertical-align:middle;')
-                                        .center(data-ng-hide='editMode')
-
-                                        button.btn.btn-danger.btn-sm(type='button', data-target='#confirmDeleteModal', data-ng-click='setIdToRemove(a.id);', data-toggle='modal', data-placement='top', title='Remove Appointment')
+                                        .center
+                                            span {{a._status}}
+                                    td(style='min-width:5em;max-width:5em; vertical-align:middle;')
+                                        .center
+                                        button.btn.btn-danger.btn-sm(type='button', title="Delete", ng-click="delete(a)")
                                             i.glyphicon.glyphicon-trash
-                                        button.btn.btn-info.btn-sm(type='button', data-ng-hide='editMode', data-ng-click='editMode=true;', data-toggle='modal', data-placement='top', title='Edit Appointment')
+                                        button.btn.btn-info.btn-sm(type='button', title='Edit', ng-click="update(a)")
                                             i.glyphicon.glyphicon-pencil
-                                        button.btn.btn-success.btn-sm(type='button', data-ng-show='editMode', data-ng-click='editMode=false; editRowCollection(a);', data-toggle='tooltip', data-placement='top', title='Save Changes')
-                                            i.glyphicon.glyphicon-ok
 
-        #confirmDeleteModal.modal.fade(role='dialog')
+        //#confirmDeleteModal.modal.fade(role='dialog')
             .modal-dialog(ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg'}")
                 .modal-content
                     .modal-header

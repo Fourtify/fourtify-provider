@@ -34,19 +34,19 @@
                             tbody
                                 tr.odd.gradeX(ng-repeat="v in visitors")
                                     td(style='min-width:6em;max-width:10em; vertical-align:middle;')
-                                        .center(data-ng-hide='editMode')
+                                        .center
                                             span {{v._name._first}} {{v._name._last}}
                                     td(style='min-width:10em;max-width:10em; vertical-align:middle;')
-                                        .center(data-ng-hide='editMode')
+                                        .center
                                             span {{v._email}}
                                     td(style='min-width:10em;max-width:10em; vertical-align:middle;')
-                                        .center(data-ng-hide='editMode')
+                                        .center
                                             span {{v._phone._number}}
                                     td(style='min-width:5em;max-width:5em; vertical-align:middle;')
-                                        .center(data-ng-hide='editMode')
+                                        .center
                                             span {{v._status}}
                                     td(style='min-width:5em;max-width:5em; vertical-align:middle;')
-                                        .center(data-ng-hide='editMode')
+                                        .center
 
                                         button.btn.btn-danger.btn-sm(type='button', title="Delete", ng-click="delete(v)")
                                             i.glyphicon.glyphicon-trash

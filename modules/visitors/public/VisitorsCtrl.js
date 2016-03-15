@@ -101,12 +101,6 @@ angular.module("visitors", [])
                 });
             };
 
-
-
-            $scope.setIdToRemove = function(q) {
-                $scope.indexToRemove = q;
-            };
-
             $scope.clearMessages = function(){
                 $scope.err = null;
                 $scope.pending = null;
