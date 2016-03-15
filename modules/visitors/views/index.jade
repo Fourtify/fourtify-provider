@@ -6,37 +6,6 @@
                 body
                     .row
                         button#newAppt.btn.btn-info(type='button', ng-click="create()") CREATE
-        // Modal
-        //#createApptModal.modal.fade(role='dialog')
-            .modal-dialog(ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg'}")
-                // Modal content
-                .modal-content
-                    .modal-header
-                        button.close(type='button', data-dismiss='modal') ×
-                        h4.modal-title CREATE A NEW APPOINTMENT
-                    .modal-body
-
-                        h4 VISITOR
-                        input#visitorInput.inputBox.newApptInput(type='text', ng-model="visitor")
-                        h4 REASON
-                        input#reasonInput.inputBox.newApptInput(type='text', ng-model="reason")
-                        h4 DATE/TIME
-
-                        .row2
-                            .row
-                                .col-sm-6
-                                    input#datetimepicker4.inputBox.newApptInput(type='text', ng-model="datepickerdata")
-                    .alert.alert-success(role='alert')
-                        strong Well done!
-                            |  You successfully added the appointment.
-
-                    .alert.alert-danger(role='alert')
-                        strong Uh Oh!
-                            |  Something didn't work the way it should have.
-
-                    .modal-footer
-                        button.btn.btn-default(type='button', data-dismiss='modal') Cancel
-                        button.btn.btn-primary(type='submit', ng-click="submitCreate()") Submit
         .row
             .col-lg-12
                 .alert.alert-dismissable.alert-danger.register-fail(ng-if="err", ng-cloak)
@@ -81,17 +50,5 @@
 
                                         button.btn.btn-danger.btn-sm(type='button', title="Delete", ng-click="delete(v)")
                                             i.glyphicon.glyphicon-trash
-                                        button.btn.btn-info.btn-sm(type='button', title='Edit', ng-click="edit(v)")
+                                        button.btn.btn-info.btn-sm(type='button', title='Edit', ng-click="update(v)")
                                             i.glyphicon.glyphicon-pencil
-
-        //-#confirmDeleteModal.modal.fade(role='dialog')
-            .modal-dialog(ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg'}")
-                .modal-content
-                    .modal-header
-                        button.close(type='button', data-dismiss='modal') ×
-                        h4.modal-title REMOVE CONFIRMATION
-                    .modal-body
-                        h4 Remove this appointment?
-                    .modal-footer
-                        button.btn.btn-default(type='button', data-dismiss='modal') Cancel
-                        button.btn.btn-danger(type='submit', data-dismiss='modal', data-ng-click="submitDelete()") Remove
