@@ -82,7 +82,7 @@ app.use("/slack",function(req,res){
 //var visitorsModule = require('./modules/visitors/app');
 //app.use(visitorsModule);
 
-var visitorsModule = require('./modules/queueHistory/app');
+var visitorsModule = require('./modules/visitors/app');
 app.use(visitorsModule);
 
 var appointmentsModule = require('./modules/appointments/app');
@@ -94,9 +94,6 @@ app.use(formsModule);
 
 var settingsModule = require('./modules/settings/app');
 app.use(settingsModule);
-
-var engine = require('./modules/engine/app');
-app.use(engine);
 
 app.all("/api/myself", AuthMiddleware.authenticateApi(), function(req, res){
     res.status(200).send({

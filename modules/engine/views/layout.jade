@@ -53,20 +53,23 @@ html(lang='en', ng-app="fourtifyApp")
                         // <div class="v-highlight"></div> USER LATER TO FIX BORDER HOVERING
                         a(href, ui-sref="dashboard")
                             i.ion.ion-speedometer
-                            |  VISITOR QUEUE
-
+                            |  QUEUE
                     li
                         a(href, ui-sref="appointments")
                             i.ion.ion-ios-people
                             |  APPOINTMENTS
                     li
-                        a(href, ui-sref="queueHistory")
+                        a(href, ui-sref="visitors")
                             i.ion.ion-ios-people
-                            |  VISITOR HISTORY
+                            |  VISITORS
                     li
                         a(href, ui-sref="employee")
                             i.ion.ion-person-stalker
                             |  EMPLOYEES
+                    li
+                        a()
+                            i.ion.ion-ios-people
+                            |  QUEUE HISTORY
                     li
                         a(href, ui-sref="forms")
                             i.ion.ion-ios-list-outline
@@ -96,7 +99,8 @@ html(lang='en', ng-app="fourtifyApp")
 
         script(type="text/javascript",src="/bower/angular/angular.min.js")
         script(type="text/javascript",src="/bower/ocLazyLoad/dist/ocLazyLoad.min.js")
-        script(type="text/javascript",src="/bower/angular-bootstrap/ui-bootstrap.min.js")
+        script(src='/bower/angular-bootstrap/ui-bootstrap.min.js')
+        script(src='/bower/angular-bootstrap/ui-bootstrap-tpls.min.js')
         script(type="text/javascript",src="/bower/moment/min/moment-with-locales.min.js")
         script(type="text/javascript",src="/bower/ng-file-upload/ng-file-upload.min.js")
         script(type="text/javascript",src="/bower/angular-loading-bar/src/loading-bar.js")

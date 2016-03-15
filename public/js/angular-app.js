@@ -45,6 +45,23 @@ angular.module("fourtifyApp",
                 }*/
             })
 
+            // Visitors
+            .state('visitors', {
+                url: "/visitors",
+                templateUrl: "/templates/visitors",
+                controller: "VisitorsAllCtrl",
+                resolve: {
+                    visitors: function ($ocLazyLoad) {
+                        return $ocLazyLoad.load(
+                            {
+                                name: "visitors",
+                                files: ["/pub/visitors/VisitorsCtrl.js"]
+                            }
+                        );
+                    }
+                }
+            })
+
             // Employee
             .state('employee', {
                 url: "/employee",
