@@ -88,3 +88,30 @@ input, textarea {
   text-align:right;
   font-size: small;
 }
+
+.alertBox {
+  color: #D8000C;
+  background-color: #FFBABA;
+  text-align:center;
+  border: 1px solid;
+  margin: 0px 0px;
+  background-repeat: no-repeat;
+  background-position: 10px center;
+  border-radius:4px;
+  font-family: 'Arial', sans-serif;
+  font-size: large;
+}
+
+
+.loggingBox {
+  color: #4F8A10;
+  background-color: #DFF2BF;
+  text-align:center;
+  border: 1px solid;
+  margin: 0px 0px;
+  background-repeat: no-repeat;
+  background-position: 10px center;
+  border-radius:4px;
+  font-family: 'Arial', sans-serif;
+  font-size: large;
+}
