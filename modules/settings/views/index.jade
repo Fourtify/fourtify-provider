@@ -6,29 +6,37 @@
     #container-fluid
         form#settings-form
             #left.col-lg-6
-                img.logo(ng-src="{{settings.logo}}", alt='Company logo')
-                button#select-a-file.btn.btn-info(type='button') SELECT A FILE
-                input#files(type='file', name='files[]', multiple='')
-                output#list
-            #right.col-lg-6
-                h2 Your Company Info
                 h3 COMPANY NAME
-                input#companyName.inputBox(type='text', value="#{provider._domain}", disabled)
+                input#companyName.inputBox(type='text', value="#{provider._domain}", disabled,
+                placeholder='Company Name', style='text-align:center;')
                 h3 LOGO
-                input.inputBox(type='text', ng-model="settings.logo")
+                input.inputBox(type='text', ng-model="settings.logo", placeholder='Image URL',
+                style='text-align:center;')
+                h3
+                img.logo(ng-src="{{settings.logo}}", alt='Company logo', style='text-align:center;')
+                p Logo preview
                 h3 TIMEZONE
-                input#timezone.inputBox(type='text', ng-model="settings.timezone")
+                // America/Los_Angeles PST
+                // America/Denver MST
+                // America/Chicago CST
+                // America/New_York EST
+                select#timezone.selectBox(type='text', ng-model="settings.timezone", style='text-align:center;')
+                    each tz, i in ['America/Los_Angeles', 'America/Denver', 'America/Chicago', 'America/New_York']
+                        option(value=i) #{tz}
+
                 h3 SLACK
-                input#slack.inputBox(type='text', ng-model="settings.slack")
+                input#slack.inputBox(type='text', ng-model="settings.slack", style='text-align:center;',
+                placeholder='Slack URL')
+
                 h3 ACCENT COLORS
                 p Choose custom accent colors for details on your check in app
                 .row
                     .col-lg-6
                         h4 PRIMARY COLOR
-                        input.color.inputBox(type='text', ng-model="settings.theme.primaryColor")
+                        input.color.inputBox(type='text', ng-model="settings.theme.primaryColor", style='text-align:center;')
                     .col-lg-6
                         h4 SECONDARY COLOR
-                        input.color.inputBox(type='text', ng-model="settings.theme.secondaryColor")
+                        input.color.inputBox(type='text', ng-model="settings.theme.secondaryColor", style='text-align:center;')
                 #buttonRow
                     #settings-cancel
                         br
@@ -36,4 +44,5 @@
                     #settings-submit
                         br
                         button#submit-button.btn.btn-info(type='button', ng-click="update()") SUBMIT
+
 
