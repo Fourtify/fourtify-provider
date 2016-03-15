@@ -62,17 +62,17 @@ angular.module("fourtifyApp",
                 }
             })
 
-            // Employee
-            .state('employee', {
-                url: "/employee",
-                templateUrl: "/templates/employee",
-                controller: "EmployeeAllCtrl",
+            // Employees
+            .state('employees', {
+                url: "/employees",
+                templateUrl: "/templates/employees",
+                controller: "EmployeesAllCtrl",
                 resolve: {
-                    staff: function ($ocLazyLoad) {
+                    employees: function ($ocLazyLoad) {
                         return $ocLazyLoad.load(
                             {
-                                name: "staff",
-                                files: ["/pub/employee/EmployeeCtrl.js"]
+                                name: "employees",
+                                files: ["/pub/employees/EmployeesCtrl.js"]
                             }
                         );
                     }

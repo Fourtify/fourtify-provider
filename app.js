@@ -72,7 +72,7 @@ var AuthMiddleware = require("./modules/authentication/src/AuthMiddleware");
 var authenticationModule = require('./modules/authentication/app');
 app.use(authenticationModule);
 
-var employeeModule = require('./modules/employee/app');
+var employeeModule = require('./modules/employees/app');
 app.use(employeeModule);
 app.use("/slack",function(req,res){
    // "use strict";
