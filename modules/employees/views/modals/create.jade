@@ -1,0 +1,41 @@
+.modal-header
+    button.close(type="button", ng-click='cancel()')
+        span(aria-hidden="true") &#215;
+    h4.modal-title Create Employee
+.modal-body
+    form
+        .container-fluid
+            .row
+                .panel-body
+                    .row
+                        .col-xs-12.form-group
+                            label.main(for="fname") First Name
+                            input.form-control(id="fname", type="text", placeholder="First Name", ng-model="fname")
+                        .col-xs-12.form-group
+                            label.main(for="lname") Last Name
+                            input.form-control(id="lname", type="text", placeholder="Last Name", ng-model="lname")
+                        .col-xs-12.form-group
+                            label.main(for="title") Title
+                            input.form-control(id="title", type="text", placeholder="Title", ng-model="title")
+                        .col-xs-12.form-group
+                            label.main(for="email") Email
+                            input.form-control(id="email", type="text", placeholder="Email", ng-model="email")
+                        .col-xs-12.form-group
+                            label.main(for="phone") Phone
+                            input.form-control(id="phone", type="text", placeholder="Phone", ng-model="phone")
+                .col-xs-12
+                    .alert.alert-dismissable.alert-danger.register-fail(ng-if="err", ng-cloak)
+                        button.close(data-dismiss='alert', type='button') &times;
+                        p.
+                            {{err._code}}: {{err._msg}}
+                    .alert.alert-dismissable.alert-success(ng-if="success", ng-cloak)
+                        button.close(data-dismiss='alert', type='button') &times;
+                        p.
+                            {{success._msg}}
+                    .alert.alert-dismissable.alert-info(ng-if="pending", ng-cloak)
+                        button.close(data-dismiss='alert', type='button') &times;
+                        p.
+                            {{pending._msg}}
+.modal-footer
+    button.btn.btn-default(type="button", ng-click='cancel()') Close
+    button.btn.btn-blue(type="button", ng-click='create()') Create
