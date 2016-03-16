@@ -85,6 +85,58 @@ angular.module("queue", [])
                 });
             };
 
+            $scope.moveUp = function(moveUpObj) {
+
+                var obj = {
+                    "visitor": moveUpObj._visitor._id,
+                    "appointment": moveUpObj._appointment._id,
+                    "position": Number(moveUpObj._position) - 1
+                };
+
+                $scope.pending = {_msg:"Updating Queue..."};
+                QueueService.updateQueue(
+                    moveUpObj._id,
+                    obj,
+                    //success
+                    function(data) {
+                        $scope.refresh({
+                            success: {_msg:moveUpObj._visitor._email+" has been moved up!"}
+                        });
+                    },
+                    //error function
+                    function(data, status) {
+                        $scope.clearMessages();
+                        $scope.err = data;
+                    }
+                );
+            };
+
+            $scope.moveDown = function(moveDownObj) {
+
+                var obj = {
+                    "visitor": moveDownObj._visitor._id,
+                    "appointment": moveDownObj._appointment._id,
+                    "position": Number(moveDownObj._position) + 1
+                };
+
+                $scope.pending = {_msg:"Updating Queue..."};
+                QueueService.updateQueue(
+                    moveDownObj._id,
+                    obj,
+                    //success
+                    function(data) {
+                        $scope.refresh({
+                            success: {_msg:moveDownObj._visitor._email+" has been moved down!"}
+                        });
+                    },
+                    //error function
+                    function(data, status) {
+                        $scope.clearMessages();
+                        $scope.err = data;
+                    }
+                );
+            };
+
             $scope.delete = function(delObj) {
                 $scope.clearMessages();
 
