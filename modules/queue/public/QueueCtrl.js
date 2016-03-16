@@ -85,6 +85,37 @@ angular.module("queue", [])
                 });
             };
 
+            $scope.reorder = function() {
+
+                $scope.pending = {_msg:"Reordering Queue..."};
+
+                for (var i = 0; i < $scope.queue.length; ++i) {
+
+                    var obj = {
+                        "visitor": $scope.queue[i]._visitor._id,
+                        "appointment": $scope.queue[i]._appointment._id,
+                        "position": $scope.queue[i]._position = i+1
+                    };
+
+                    QueueService.updateQueue(
+                        $scope.queue[i]._visitor._id,
+                        obj,
+                        //success
+                        function(data) {
+                            $scope.refresh({
+                                success: {_msg:"Scope has been reordered!"}
+                            });
+                        },
+                        //error function
+                        function(data, status) {
+                            $scope.clearMessages();
+                            $scope.err = data;
+                        }
+                    );
+
+                }
+            };
+
             $scope.moveUp = function(moveUpObj) {
 
                 var obj = {
