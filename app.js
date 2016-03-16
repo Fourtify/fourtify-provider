@@ -15,6 +15,9 @@ var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 var request = require('request');
 
+var config = require('./config/config.json')[environment];
+var API_URL = config.apiUrl;
+
 var mongoose = require('mongoose');
 var configDB = require('./config/database.json')[environment];
 
@@ -112,7 +115,7 @@ app.all("/api", AuthMiddleware.authenticateApi(), function(req, res){
                 "user-agent": req.headers["user-agent"]
             },
             method: req.method,
-            uri: "http://localhost:3001"+req.headers.url,
+            uri: API_URL+req.headers.url,
             qs: req.query,
             json: req.body
         },
