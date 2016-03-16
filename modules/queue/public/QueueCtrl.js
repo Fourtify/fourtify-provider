@@ -98,7 +98,7 @@ angular.module("queue", [])
                     };
 
                     QueueService.updateQueue(
-                        $scope.queue[i]._visitor._id,
+                        $scope.queue[i]._id,
                         obj,
                         //success
                         function(data) {
