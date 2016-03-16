@@ -1,0 +1,68 @@
+.logo {
+    height:50%;
+    width:50%;
+    border: 1px solid #808080;
+    text-align: center;
+}
+
+#left {
+    width:400px;
+
+}
+#left h3 {
+    color: #808080;
+    font-size: 14px;
+}
+#left .inputBox {
+    width:300px;
+}
+#right {
+    width:400px;
+}
+#right h2 {
+    color: #808080;
+    font-size: 20px;
+    padding-bottom: 15px;
+}
+#right h3 {
+    color: #808080;
+    font-size: 14px;
+}
+#right h4 {
+    color: #808080;
+    font-size: 12px;
+}
+#right p {
+    color: #808080;
+    font-size: 14px;
+}
+
+.selectBox {
+
+}
+#slack {
+    width:300px;
+}
+
+#settings-form .color {
+    width:150px;
+}
+
+#settings-cancel {
+    width:210px;
+    float:left;
+    text-align: right;
+    margin-bottom: 100px;
+}
+#settings-submit {
+    margin-left:220px;
+    margin-right: 20px;
+    margin-bottom: 100px;
+
+}
+#buttonRow {
+    float: right;
+}
+#container-fluid {
+    margin: 0 auto;
+}

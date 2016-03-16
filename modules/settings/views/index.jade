@@ -1,8 +1,8 @@
+link(href='/css/settings.css', rel='stylesheet')
 .container-fluid
     .row
         .col-lg-12
             h1.page-header Settings
-        // /.col-lg-12
     #container-fluid
         form#settings-form
             #left.col-lg-6
@@ -15,6 +15,7 @@
                 h3
                 img.logo(ng-src="{{settings.logo}}", alt='Company logo', style='text-align:center;')
                 p Logo preview
+            #right.col-lg-6
                 h3 TIMEZONE
                 // America/Los_Angeles PST
                 // America/Denver MST

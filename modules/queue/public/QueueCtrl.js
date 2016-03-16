@@ -140,6 +140,7 @@ angular.module("queue", [])
                         $scope.err = data;
                     }
                 );
+                $scope.reorder();
             };
 
             $scope.moveDown = function(moveDownObj) {
@@ -166,6 +167,7 @@ angular.module("queue", [])
                         $scope.err = data;
                     }
                 );
+                $scope.reorder();
             };
 
             $scope.delete = function(delObj) {
