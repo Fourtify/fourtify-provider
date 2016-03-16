@@ -93,9 +93,6 @@ app.use(queueModule);
 var formsModule = require('./modules/forms/app');
 app.use(formsModule);
 
-var slackModule = require('./modules/slack/app');
-app.use(slackModule);
-
 var settingsModule = require('./modules/settings/app');
 app.use(settingsModule);
 
@@ -107,7 +104,7 @@ app.all("/api/myself", AuthMiddleware.authenticateApi(), function(req, res){
 });
 
 app.post("/api/slack", AuthMiddleware.authenticateApi(), function(req, res){
-    console.log(req.body.payload);
+   // console.log(req.body.payload);
     var dataTmp = {
         "username": "fourtify-bot",
         "text": req.body.payload,
