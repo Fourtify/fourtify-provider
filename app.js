@@ -93,19 +93,42 @@ app.use(queueModule);
 var formsModule = require('./modules/forms/app');
 app.use(formsModule);
 
+var slackModule = require('./modules/slack/app');
+app.use(slackModule);
+
 var settingsModule = require('./modules/settings/app');
 app.use(settingsModule);
 
-app.use("/slack",function(req,res){
-    // "use strict";
-    require("./modules/slack/public/SlackPost");
-    res.status(200).send("Hooray");
-})
 app.all("/api/myself", AuthMiddleware.authenticateApi(), function(req, res){
     res.status(200).send({
         provider: req.session.provider,
         employee: req.session.employee
     });
+});
+
+app.post("/api/slack", AuthMiddleware.authenticateApi(), function(req, res){
+    console.log(req.body.payload);
+    var dataTmp = {
+        "username": "fourtify-bot",
+        "text": req.body.payload,
+        "icon_emoji": ":clock2:"
+    };
+
+    request({
+            url: req.body.url,
+            method: "POST",
+            json: true,
+            headers: {
+                "content-type": "application/json"
+            },
+            body: dataTmp
+        },
+        function (error, response, body) {
+            if (error) {
+                console.log(error);
+            }
+            res.status(response.statusCode).send(body);
+        });
 });
 
 app.all("/api", AuthMiddleware.authenticateApi(), function(req, res){

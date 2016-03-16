@@ -134,6 +134,23 @@ angular.module("fourtifyApp",
                 }
             })
 
+            // Slack
+            .state('slack', {
+                url: "/slack",
+                templateUrl: "/templates/slack",
+                controller: "SlackCtrl",
+                resolve: {
+                    slack: function ($ocLazyLoad) {
+                        return $ocLazyLoad.load(
+                            {
+                                name: "slack",
+                                files: ["/pub/slack/SlackPost.js"]
+                            }
+                        );
+                    }
+                }
+            })
+
 
             // Forms
             .state('forms', {

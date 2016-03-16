@@ -113,18 +113,50 @@ angular.module("queue", [])
 
             $scope.checkIn = function(queue) {
                 $scope.clearMessages();
-
+                var payload = queue._visitor._name._first + " " + queue._visitor._name._last + " has checked in for appointment";//+ moment().format("MM/DD/YYYY hh:mm:ss");
                 var obj = {
                     "visitor": queue._visitor._id,
                     "appointment": queue._appointment._id,
-                    "queue": queue._id
+                    "queue": queue._id,
+                    "payload": payload
                 };
+                console.log(queue._appointment);
+                QueueService.getSettings(
+                    {},
+                    //success function
+                    function(data) {
+                        //$scope.clearMessages();
+                        QueueService.sendNotification(
+                            {
+                                url: data._slack,
+                                payload: payload
+                            },
+                            //success function
+                            function(data) {
+                                //$scope.clearMessages();
+                                console.log(data);
+                            },
+                            //error function
+                            function(data, status) {
+                                //$scope.clearMessages();
+                                $scope.err = data;
+                                console.log(data);
+                            }
+                        );
+                    },
+                    //error function
+                    function(data, status) {
+                        //$scope.clearMessages();
+                        $scope.err = data;
+                        console.log(data);
+                    }
+                );
+
 
                 QueueService.createQueueHistory(
                     obj,
                     //success function
                     function(data) {
-                        //@todo alert in slack
                         $scope.refresh({
                             success: {_msg:queue._visitor._email+" has been successfully checked in!"}
                         });
@@ -365,6 +397,26 @@ angular.module("queue", [])
                     var req = {
                         method: 'DELETE',
                         url: '/queue/'+delId
+                    };
+                    this.apiCall(req, success, error);
+                },
+                sendNotification: function(data, success, error) {
+                    var req = {
+                        method: 'POST',
+                        url: '/api/slack',
+                        data: data
+                    };
+                    $http(req).success(function(data) {
+                        success(data);
+                    }).error(function(data, status) {
+                        error(data, status);
+                    });
+                },
+                getSettings: function(params, success, error) {
+                    var req = {
+                        method: 'GET',
+                        url: '/settings',
+                        params: params
                     };
                     this.apiCall(req, success, error);
                 },
