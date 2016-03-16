@@ -2,10 +2,8 @@
     .row
         .col-lg-12
             h1.page-header EMPLOYEES
-            html
-                body
-                    .row
-                        button#newAppt.btn.btn-info(type='button', ng-click="create()") CREATE
+                .row
+                    button#newAppt.btn.btn-info(type='button', ng-click="create()") CREATE
         .row
             .col-lg-12
                 .alert.alert-dismissable.alert-danger.register-fail(ng-if="err", ng-cloak)

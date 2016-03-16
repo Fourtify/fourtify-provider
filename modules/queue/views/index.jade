@@ -1,7 +1,10 @@
 .container-fluid
     .row
         .col-lg-12
-            h1.page-header QUEUE HISTORY
+            h1.page-header QUEUE
+                .row
+                    button.pull-right.btn.btn-warning(type='button', ng-click="reorder()") REORDER POSITIONS
+                    button#newAppt.btn.btn-info(type='button', ng-click="create()") CREATE
         .row
             .col-lg-12
                 .alert.alert-dismissable.alert-danger.register-fail(ng-if="err", ng-cloak)
@@ -32,20 +35,28 @@
                                 tr.odd.gradeX(ng-repeat="q in queue")
                                     td(style='min-width:6em;max-width:10em; vertical-align:middle;')
                                         .center
-                                            span {{q._visitor.name.first}} {{q._visitor.name.last}}
+                                            span {{q._visitor._name._first}} {{q._visitor._name._last}}
                                     td(style='min-width:10em;max-width:10em; vertical-align:middle;')
                                         .center
-                                            span {{q._appointment.start}}
+                                            span {{q._appointment._start}}
                                     td(style='min-width:10em;max-width:10em; vertical-align:middle;')
                                         .center
-                                            span {{q._appointment.end}}
+                                            span {{q._appointment._end}}
                                     td(style='min-width:5em;max-width:5em; vertical-align:middle;')
                                         .center
-                                            span {{q._appointment.reason}}
+                                            span {{q._appointment._reason}}
                                     td(style='min-width:5em;max-width:5em; vertical-align:middle;')
                                         .center
                                             span {{q._position}}
                                     td(style='min-width:5em;max-width:5em; vertical-align:middle;')
                                         .center
+                                        button.btn.btn-success.btn-sm(type='button', title='Check In', ng-click="checkIn(q)")
+                                            i.glyphicon.glyphicon-plus
+                                        button.btn.btn-primary.btn-sm(type='button', title='Move Up', ng-click="moveUp(q)")
+                                            i.glyphicon.glyphicon-arrow-up
+                                        button.btn.btn-primary.btn-sm(type='button', title='Move Down', ng-click="moveDown(q)")
+                                            i.glyphicon.glyphicon-arrow-down
+                                        button.btn.btn-info.btn-sm(type='button', title='Edit', ng-click="update(q)")
+                                            i.glyphicon.glyphicon-pencil
                                         button.btn.btn-danger.btn-sm(type='button', title="Delete", ng-click="delete(q)")
                                             i.glyphicon.glyphicon-trash

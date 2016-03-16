@@ -2,10 +2,8 @@
     .row
         .col-lg-12
             h1.page-header APPOINTMENTS
-            html
-                body
-                    .row
-                        button#newAppt.btn.btn-info(type='button', ng-click="create()") CREATE
+                .row
+                    button#newAppt.btn.btn-info(type='button', ng-click="create()") CREATE
         // Modal
         //#createApptModal.modal.fade(role='dialog')
             .modal-dialog(ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg'}")

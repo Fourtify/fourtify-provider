@@ -26,12 +26,15 @@ angular.module("fourtifyApp",
             .state('/', {
                 url: "/",
                 controller: function($state){
-                    $state.go('dashboard');
+                    $state.go('queue');
                 }
             })
             .state('dashboard', {
                 url: "/dashboard",
-                templateUrl: "/templates/dashboard"
+                //templateUrl: "/templates/dashboard",
+                controller: function($state){
+                    $state.go('queue');
+                }
                 /*controller: "QueueAllCtrl",
                 resolve: {
                     queue: function ($ocLazyLoad) {
@@ -96,18 +99,35 @@ angular.module("fourtifyApp",
                 }
             })
 
+            // Queue
+            .state('queue', {
+                url: "/queue",
+                templateUrl: "/templates/queue",
+                controller: "QueueAllCtrl",
+                resolve: {
+                    queue: function ($ocLazyLoad) {
+                        return $ocLazyLoad.load(
+                            {
+                                name: "queue",
+                                files: ["/pub/queue/QueueCtrl.js"]
+                            }
+                        );
+                    }
+                }
+            })
+
 
             // Visitor History
             .state('queueHistory', {
-                url: "/queueHistory",
-                templateUrl: "/templates/queueHistory",
-                controller: "QHAllCtrl",
+                url: "/queue/history",
+                templateUrl: "/templates/queue/history",
+                controller: "QueueHistoryAllCtrl",
                 resolve: {
-                    staff: function ($ocLazyLoad) {
+                    queueHistory: function ($ocLazyLoad) {
                         return $ocLazyLoad.load(
                             {
                                 name: "queueHistory",
-                                files: ["/pub/queueHistory/QHCtrl.js"]
+                                files: ["/pub/queue/history/QueueHistoryCtrl.js"]
                             }
                         );
                     }
@@ -139,7 +159,7 @@ angular.module("fourtifyApp",
                 templateUrl: "/templates/settings",
                 controller: "SettingsAllCtrl",
                 resolve: {
-                    staff: function ($ocLazyLoad) {
+                    settings: function ($ocLazyLoad) {
                         return $ocLazyLoad.load(
                             {
                                 name: "settings",

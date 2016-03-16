@@ -1,0 +1,34 @@
+.modal-header
+    button.close(type="button", ng-click='cancel()')
+        span(aria-hidden="true") &#215;
+    h4.modal-title Add to Queue
+.modal-body
+    form
+        .container-fluid
+            .row
+                .panel-body
+                    .row
+                        .col-xs-12.form-group
+                            label.main(for="visitorSearch") Appointment
+                            input.form-control(id="visitorSearch", type="text", ng-model='appointment',
+                                placeholder='Search Visitors',
+                                uib-typeahead='v as v.display for v in searchAppointments($viewValue)', autocomplete="off")
+                        .col-xs-12.form-group
+                            label.main(for="position") Position
+                            input.form-control(id="position", type="text", placeholder="1", ng-model="position")
+                .col-xs-12
+                    .alert.alert-dismissable.alert-danger.register-fail(ng-if="err", ng-cloak)
+                        button.close(data-dismiss='alert', type='button') &times;
+                        p.
+                            {{err._code}}: {{err._msg}}
+                    .alert.alert-dismissable.alert-success(ng-if="success", ng-cloak)
+                        button.close(data-dismiss='alert', type='button') &times;
+                        p.
+                            {{success._msg}}
+                    .alert.alert-dismissable.alert-info(ng-if="pending", ng-cloak)
+                        button.close(data-dismiss='alert', type='button') &times;
+                        p.
+                            {{pending._msg}}
+.modal-footer
+    button.btn.btn-default(type="button", ng-click='cancel()') Close
+    button.btn.btn-blue(type="button", ng-click='create()') Create

@@ -74,13 +74,6 @@ app.use(authenticationModule);
 
 var employeeModule = require('./modules/employees/app');
 app.use(employeeModule);
-app.use("/slack",function(req,res){
-   // "use strict";
-    require("./modules/slack/public/SlackPost");
-    res.status(200).send("Hooray");
-})
-//var visitorsModule = require('./modules/visitors/app');
-//app.use(visitorsModule);
 
 var visitorsModule = require('./modules/visitors/app');
 app.use(visitorsModule);
@@ -88,13 +81,23 @@ app.use(visitorsModule);
 var appointmentsModule = require('./modules/appointments/app');
 app.use(appointmentsModule);
 
+var  queueHistoryModule = require('./modules/queueHistory/app');
+app.use(queueHistoryModule);
+
+var  queueModule = require('./modules/queue/app');
+app.use(queueModule);
+
 var formsModule = require('./modules/forms/app');
 app.use(formsModule);
-
 
 var settingsModule = require('./modules/settings/app');
 app.use(settingsModule);
 
+app.use("/slack",function(req,res){
+    // "use strict";
+    require("./modules/slack/public/SlackPost");
+    res.status(200).send("Hooray");
+})
 app.all("/api/myself", AuthMiddleware.authenticateApi(), function(req, res){
     res.status(200).send({
         provider: req.session.provider,
