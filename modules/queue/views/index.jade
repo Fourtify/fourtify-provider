@@ -48,15 +48,17 @@
                                     td(style='min-width:5em;max-width:5em; vertical-align:middle;')
                                         .center
                                             span {{q._position}}
-                                    td(style='min-width:5em;max-width:5em; vertical-align:middle;')
+                                    td(style='min-width:8em;max-width:8em; vertical-align:middle;')
                                         .center
                                         button.btn.btn-success.btn-sm(type='button', title='Check In', ng-click="checkIn(q)")
-                                            i.glyphicon.glyphicon-plus
-                                        button.btn.btn-primary.btn-sm(type='button', title='Move Up', ng-click="moveUp(q)")
-                                            i.glyphicon.glyphicon-arrow-up
-                                        button.btn.btn-primary.btn-sm(type='button', title='Move Down', ng-click="moveDown(q)")
-                                            i.glyphicon.glyphicon-arrow-down
+                                            i.glyphicon.glyphicon-ok
                                         button.btn.btn-info.btn-sm(type='button', title='Edit', ng-click="update(q)")
                                             i.glyphicon.glyphicon-pencil
                                         button.btn.btn-danger.btn-sm(type='button', title="Delete", ng-click="delete(q)")
                                             i.glyphicon.glyphicon-trash
+                                        button.btn.btn-primary.btn-sm(type='button', title='Move Up', ng-click="moveUp(q)")
+                                            i.glyphicon.glyphicon-arrow-up
+                                        button.btn.btn-primary.btn-sm(type='button', title='Move Down', ng-click="moveDown(q)")
+                                            i.glyphicon.glyphicon-arrow-down
+
+

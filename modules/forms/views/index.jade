@@ -1,10 +1,43 @@
-.container-fluid
-    .row
-        .col-lg-12
-            h1.page-header Forms
-    #container-fluid
-        form#settings-form
-            #left.col-lg-6
-                button#select-a-file.btn.btn-info(type='button') SELECT A FILE
-                input#files(type='file', name='files[]', multiple='')
-                output#list
+link(rel='stylesheet', href='/css/vendor.css')
+link(rel='stylesheet', href='/css/formbuilder.css')
+style.
+    .fb-main {
+        background-color: #fff;
+        border-radius: 5px;
+        min-height: 600px;
+    }
+
+    input[type=text] {
+        height: 26px;
+        margin-bottom: 3px;
+    }
+
+    select {
+        margin-bottom: 5px;
+        font-size: 40px;
+    }
+
+.col-md-12
+    .fb-main
+        script(src='/js/vendor.js')
+        script(src='/js/formbuilder.js')
+        script.
+            $(function () {
+                fb = new Formbuilder({
+                    selector: '.fb-main',
+                    bootstrapData: [
+
+                        {
+                            "label": "Name",
+                            "field_type": "text",
+                            "required": true,
+                            "field_options": {},
+                            "cid": "c6"
+                        }
+                    ]
+                });
+                fb.on('save', function (payload) {
+                    console.log(payload);
+                })
+            });
+
