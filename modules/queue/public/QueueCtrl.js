@@ -87,7 +87,7 @@ angular.module("queue", [])
 
             $scope.reorder = function() {
 
-                $scope.pending = {_msg:"Reordering Queue..."};
+                $scope.pending = {_msg:"Scope has been reordered!"};
 
                 for (var i = 0; i < $scope.queue.length; ++i) {
 
@@ -102,9 +102,11 @@ angular.module("queue", [])
                         obj,
                         //success
                         function(data) {
-                            $scope.refresh({
-                                success: {_msg:"Scope has been reordered!"}
-                            });
+                            if(i == $scope.queue.length-1){
+                                $scope.refresh({
+                                    //success: {_msg:"Scope has been reordered!"}
+                                });
+                            }
                         },
                         //error function
                         function(data, status) {
@@ -140,7 +142,7 @@ angular.module("queue", [])
                         $scope.err = data;
                     }
                 );
-                $scope.reorder();
+
             };
 
             $scope.moveDown = function(moveDownObj) {
@@ -167,7 +169,7 @@ angular.module("queue", [])
                         $scope.err = data;
                     }
                 );
-                $scope.reorder();
+
             };
 
             $scope.delete = function(delObj) {
