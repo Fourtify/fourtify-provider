@@ -87,7 +87,7 @@ angular.module("queue", [])
 
             $scope.reorder = function() {
 
-                $scope.pending = {_msg:"Scope has been reordered!"};
+                $scope.pending = {_msg:"Positions have been updated!"};
 
                 for (var i = 0; i < $scope.queue.length; ++i) {
 
@@ -417,7 +417,7 @@ angular.module("queue", [])
                     //success function
                     function(data) {
                         $uibModalInstance.close({
-                            success: {_msg:"Queue has been successfully deleted!"},
+                            success: {_msg:"Visitor has been successfully taken off the Queue!"},
                             data: data
                         });
 
