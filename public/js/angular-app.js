@@ -140,16 +140,20 @@ angular.module("fourtifyApp",
                 url: "/forms",
                 templateUrl: "/templates/forms",
                 controller: "FormsAllCtrl",
-                resolve: {
-                    staff: function ($ocLazyLoad) {
+                /*resolve: {
+                    forms: function ($ocLazyLoad) {
                         return $ocLazyLoad.load(
                             {
                                 name: "forms",
-                                files: ["/pub/forms/FormsCtrl.js"]
+                                files: [
+                                    "/pub/forms/FormsCtrl.js",
+                                    "/css/vendor.css",
+                                    "/css/formbuilder.css"
+                                ]
                             }
                         );
                     }
-                }
+                }*/
             })
 
 
