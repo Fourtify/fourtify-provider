@@ -104,7 +104,6 @@ app.all("/api/myself", AuthMiddleware.authenticateApi(), function(req, res){
 });
 
 app.post("/api/slack", AuthMiddleware.authenticateApi(), function(req, res){
-   // console.log(req.body.payload);
     var dataTmp = {
         "username": "fourtify-bot",
         "text": req.body.payload,

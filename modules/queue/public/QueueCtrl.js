@@ -161,11 +161,12 @@ angular.module("queue", [])
                         $scope.refresh(data);
                     }
                 });
+
             };
 
             $scope.checkIn = function(queue) {
                 $scope.clearMessages();
-                var payload = queue._visitor._name._first + " " + queue._visitor._name._last + " has checked in for appointment";//+ moment().format("MM/DD/YYYY hh:mm:ss");
+                var payload = queue._visitor._name._first + " " + queue._visitor._name._last + " has checked in for their appointment.";//+ moment().format("MM/DD/YYYY hh:mm:ss");
                 var obj = {
                     "visitor": queue._visitor._id,
                     "appointment": queue._appointment._id,
