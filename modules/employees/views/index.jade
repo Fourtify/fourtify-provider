@@ -45,7 +45,8 @@
                                             span {{e._phone._number}}
                                     td(style='min-width:5em;max-width:5em; vertical-align:middle;')
                                         .center(data-ng-hide='editMode')
-
+                                        button.btn.btn-primary.btn-sm(type='button', title="Change Password", ng-click="updatePassword(e)")
+                                            i.glyphicon.glyphicon-lock
                                         button.btn.btn-danger.btn-sm(type='button', title="Delete", ng-click="delete(e)")
                                             i.glyphicon.glyphicon-trash
                                         button.btn.btn-info.btn-sm(type='button', title='Edit', ng-click="update(e)")

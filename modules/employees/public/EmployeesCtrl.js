@@ -75,6 +75,30 @@ angular.module("employees", [])
                 });
             };
 
+            $scope.updatePassword = function(updateObj) {
+                $scope.clearMessages();
+
+                var modalInstance = $uibModal.open({
+                    templateUrl: '/templates/employees/update/password',
+                    controller: 'EmployeesUpdatePasswordCtrl',
+                    size: "md",
+                    resolve: {
+                        updateObj: function() {
+                            return updateObj;
+                        }
+                    }
+                });
+
+                modalInstance.result.then(function (data) {
+                    if (data.err) {
+                        $scope.err = data.err;
+                    }
+                    else {
+                        $scope.refresh(data);
+                    }
+                });
+            };
+
             $scope.delete = function(delObj) {
                 $scope.clearMessages();
 
@@ -130,6 +154,7 @@ angular.module("employees", [])
                         "last": $scope.lname
                     },
                     "email": $scope.email,
+                    "password": $scope.password,
                     "phone": {
                         "type": "Business",
                         "number": $scope.phone
@@ -250,6 +275,66 @@ angular.module("employees", [])
             }
         }])
 
+    .controller("EmployeesUpdatePasswordCtrl", ["$scope", "$uibModalInstance", "updateObj", "EmployeesService",
+        function ($scope, $uibModalInstance, updateObj, EmployeesService) {
+
+            $scope.err = null;
+            $scope.pending = {_msg:"Getting employee details..."};
+            $scope.success = null;
+
+            EmployeesService.getEmployees(
+                {
+                    id: updateObj._id
+                },
+                //success function
+                function(data) {
+                    $scope.clearMessages();
+                },
+                //error function
+                function(data, status) {
+                    $scope.clearMessages();
+                    $scope.err = data;
+                }
+            );
+
+            $scope.update = function() {
+
+                $scope.clearMessages();
+
+                var obj = {
+                    "password": $scope.password
+                };
+
+                $scope.pending = {_msg:"Updating Employee..."};
+                EmployeesService.updateEmployeePassword(
+                    updateObj._id,
+                    obj,
+                    //success function
+                    function(data) {
+                        $uibModalInstance.close({
+                            success: {_msg:"Employee successfully updated!"},
+                            data: data
+                        });
+                    },
+                    //error function
+                    function(data, status) {
+                        $scope.clearMessages();
+                        $scope.err = data;
+                    }
+                );
+            };
+
+            $scope.cancel = function () {
+                $uibModalInstance.dismiss('cancel');
+            };
+
+            $scope.clearMessages = function(){
+                $scope.err = null;
+                $scope.pending = null;
+                $scope.success = null;
+            }
+        }])
+
     .controller("EmployeesDeleteCtrl", ["$scope", "$uibModalInstance", "delObj", "EmployeesService",
         function ($scope, $uibModalInstance, delObj, EmployeesService) {
 
@@ -306,6 +391,14 @@ angular.module("employees", [])
                     var req = {
                         method: 'PUT',
                         url: '/employees/'+objId+"/profile",
+                        data: obj
+                    };
+                    this.apiCall(req, success, error);
+                },
+                updateEmployeePassword: function(objId, obj, success, error) {
+                    var req = {
+                        method: 'PUT',
+                        url: '/employees/'+objId+"/password",
                         data: obj
                     };
                     this.apiCall(req, success, error);

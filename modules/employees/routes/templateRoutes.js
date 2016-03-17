@@ -13,6 +13,10 @@ router.get('/create', AuthMiddleware.authenticate(), function(req, res) {
     res.render('modals/create');
 });
 
+router.get('/update/password', AuthMiddleware.authenticate(), function(req, res) {
+    res.render('modals/updatePassword');
+});
+
 router.get('/update', AuthMiddleware.authenticate(), function(req, res) {
     res.render('modals/update');
 });
