@@ -174,6 +174,13 @@ angular.module("fourtifyApp",
                 }
             })
 
+            .state('logout', {
+                url: "/logout",
+                controller: function(){
+                    window.location = "/logout"
+                }
+            })
+
         $locationProvider.html5Mode(true);
 
     })
