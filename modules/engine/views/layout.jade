@@ -35,7 +35,7 @@ html(lang='en', ng-app="fourtifyApp")
     body
         // Navigation
         nav.navbar.navbar-default.navbar-static-top(role='navigation', style='margin-bottom: 0; z-index: 100')
-            a.navbar-brand(href='index.html') #{provider._domain}
+            //a.navbar-brand(href='index.html') #{provider._domain}
             .username
                 a.dropdown-toggle(data-toggle='dropdown', href='#')
                     | #{employee._name._first} #{employee._name._last}    
@@ -50,6 +50,8 @@ html(lang='en', ng-app="fourtifyApp")
         .navbar-default.sidebar(role='navigation')
             .sidebar-nav
                 ul#side-menu.nav
+                    li
+                        a.navbar-brand(href='index.html') #{provider._domain}
                     li.first
                         // <div class="v-highlight"></div> USER LATER TO FIX BORDER HOVERING
                         a(href, ui-sref="queue")

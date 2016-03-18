@@ -32,6 +32,10 @@ html, body {
     font-size:x-large;
     text-transform: uppercase;
 }
+.navbar-default .navbar-brand:hover {
+    background-color: #3D4B5D;
+    color:white;
+}
 
 /*.navbar-default .navbar-brand:hover{
     background-color: #2A3643;
@@ -93,6 +97,9 @@ html, body {
     margin-right: 15px;
     left: auto;
 }
+.navbar-static-top{
+    z-index: 0;
+}
 
 .username {
     float: right;
@@ -100,18 +107,20 @@ html, body {
 }
 
 .sidebar {
-    z-index: 1;
+    z-index: 100;
     background-color: #354150;
-    position: absolute;
+    position: fixed;
     width: 250px;
     height: 100%;
     margin: 0;
     top: 0;
     height: 100%;
 }
-.sidebar .first{
-    margin-top: 51px;
-}
+
+/*.sidebar .first{*/
+    /*margin-top: 35px;*/
+/*}*/
+
 .sidebar li{
     height: 50px;
 }
@@ -120,6 +129,7 @@ html, body {
     color: white;
     height: 50px;
     padding-top: 15px;
+    padding-left:15px;
 }
 
 .sidebar .v-highlight{

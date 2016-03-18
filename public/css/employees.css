@@ -21,9 +21,9 @@
 	letter-spacing: 1px;
 }
 
-.nav li{
-	padding:10px 15px;
-}
+/*.nav li{*/
+	/*padding-top: 15px;*/
+/*}*/
 
 .nav li:hover{
 	border-bottom: 3px solid #354150;
